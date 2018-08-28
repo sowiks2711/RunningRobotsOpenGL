@@ -1,6 +1,7 @@
 **/*.dll
 **/*.exe
-build/*
+**/Debug/*
+**/.vs/*
 bin-*/*
 distrib/build_*/*
 **.bak
