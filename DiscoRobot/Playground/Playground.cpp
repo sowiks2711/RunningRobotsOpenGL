@@ -22,6 +22,8 @@
 #include "Scene.h"
 #include "Transform.h"
 #include "TransformationBuilder.h"
+#include "CubeModelBuilder.h"
+#include "SfereModelBuilder.h"
 
 using namespace glm;
 
@@ -29,11 +31,11 @@ int main( void )
 {
 	ScreenRenderer screenRenderer = ScreenRenderer(1024, 868);
 	Screen screen = Screen(screenRenderer);
-	Cube cube = Cube();
 	Sfere sfere = Sfere(20, 50, 50);
-	CubeRenderer cubeRenderer = CubeRenderer(cube);
 	SfereRenderer sfereRenderer = SfereRenderer(sfere);
 	TransformationBuilder transformationBuilder = TransformationBuilder();
+	SfereModelBuilder sfereBuilder = SfereModelBuilder();
+	CubeModelBuilder cubeBuilder = CubeModelBuilder();
 
 
 	glm::mat4 viewMatrix, projection, cubemodel, sferemodel;
@@ -43,6 +45,31 @@ int main( void )
 		.translate(0, 0, 1)
 		.translate(1, 0, 0)
 		.build();
+
+	AbstractModel cubeModel = cubeBuilder
+		.setDiffuse(0, 0.61, 0)
+		.setEmission(0.1, 0, 0)
+		.setShininess(400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(cubemodel)
+		.build();
+
+	transformationBuilder.reset();
+	sferemodel = transformationBuilder
+		.scale(0.15f)
+		.rotate(45.0f, glm::vec3(1, 1, 0))
+		.translate(0, 0, 5)
+		.translate(-1.5, 0, 0)
+		.build();
+
+	transformationBuilder.reset();
+	LightInteractionProperties sfereProperties = LightInteractionProperties();
+	sfereProperties.emission = glm::vec4(0.1, 0.1, 0.1, 1);
+	sfereProperties.diffuse = glm::vec4(0.2, 0.41, 0.11, 1);
+	sfereProperties.shininess = 400;
+	sfereProperties.specular = glm::vec4(1, 1, 1, 1);
+	AbstractModel sfereModel = AbstractModel(&sfereRenderer, sferemodel, sfereProperties);
+
 	viewMatrix = Transform::lookAt(
 		vec3(0, 0, -1),
 		vec3(0, 0, 0),
@@ -57,28 +84,7 @@ int main( void )
 	);
 	Projector projector = Projector(projection, screen);
 	SceneRenderer sceneRenderer = SceneRenderer();
-	LightInteractionProperties cubeProperties = LightInteractionProperties();
-	cubeProperties.emission = glm::vec4(0.1, 0, 0, 1);
-	cubeProperties.diffuse = glm::vec4(0, 0.61, 0, 1);
-	cubeProperties.shininess = 400;
-	cubeProperties.specular = glm::vec4(1, 1, 1, 1);
 
-	transformationBuilder.reset();
-	sferemodel = transformationBuilder
-		.scale(0.15f)
-		.rotate(45.0f, glm::vec3(1, 1, 0))
-		.translate(0, 0, 5)
-		.translate(-1.5, 0, 0)
-		.build();
-
-	transformationBuilder.reset();
-	AbstractModel cubeModel = AbstractModel(cubeRenderer, cubemodel, cubeProperties);
-	LightInteractionProperties sfereProperties = LightInteractionProperties();
-	sfereProperties.emission = glm::vec4(0.1, 0.1, 0.1, 1);
-	sfereProperties.diffuse = glm::vec4(0.2, 0.41, 0.11, 1);
-	sfereProperties.shininess = 400;
-	sfereProperties.specular = glm::vec4(1, 1, 1, 1);
-	AbstractModel sfereModel = AbstractModel(sfereRenderer, sferemodel, sfereProperties);
 	LightProperties l1 = { glm::vec4(1,1,-11,1), glm::vec4(1,0,0,1) };
 	LightProperties l2 = { glm::vec4(-1,1,-1,1), glm::vec4(0,1,0,1) };
 	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };

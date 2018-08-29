@@ -84,11 +84,20 @@
     <ClCompile Include="Playground\Playground.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Playground\TransformationBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\ModelBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SfereModelBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\CubeModelBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Playground\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Playground\LightInteractionProperties.h">
       <Filter>Header Files\POCOs</Filter>
     </ClInclude>
@@ -146,10 +155,29 @@
     <ClInclude Include="ShaderLoader\Shader.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Playground\TransformationBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\ModelBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SfereModelBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\CubeModelBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Playground\SimpleFragmentShader.frag" />
-    <None Include="Playground\SimpleVertexShader.vert" />
     <None Include="packages.config" />
+    <None Include="SimpleFragmentShader.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="SimpleVertexShader.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

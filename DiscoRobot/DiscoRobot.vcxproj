@@ -118,7 +118,9 @@
     <ClCompile Include="Playground\AbstractGeometry.cpp" />
     <ClCompile Include="Playground\AbstractModel.cpp" />
     <ClCompile Include="Playground\Cube.cpp" />
+    <ClCompile Include="Playground\CubeModelBuilder.cpp" />
     <ClCompile Include="Playground\CubeRenderer.cpp" />
+    <ClCompile Include="Playground\ModelBuilder.cpp" />
     <ClCompile Include="Playground\ModelRenderer.cpp" />
     <ClCompile Include="Playground\Playground.cpp" />
     <ClCompile Include="Playground\Projector.cpp" />
@@ -127,8 +129,10 @@
     <ClCompile Include="Playground\Screen.cpp" />
     <ClCompile Include="Playground\ScreenRenderer.cpp" />
     <ClCompile Include="Playground\Sfere.cpp" />
+    <ClCompile Include="Playground\SfereModelBuilder.cpp" />
     <ClCompile Include="Playground\SfereRenderer.cpp" />
     <ClCompile Include="Playground\Transform.cpp" />
+    <ClCompile Include="Playground\TransformationBuilder.cpp" />
     <ClCompile Include="Playground\View.cpp" />
     <ClCompile Include="ShaderLoader\Shader.cpp" />
   </ItemGroup>
@@ -136,11 +140,13 @@
     <ClInclude Include="Playground\AbstractGeometry.h" />
     <ClInclude Include="Playground\AbstractModel.h" />
     <ClInclude Include="Playground\Cube.h" />
+    <ClInclude Include="Playground\CubeModelBuilder.h" />
     <ClInclude Include="Playground\CubeRenderer.h" />
     <ClInclude Include="Playground\LightInteractionProperties.h" />
     <ClInclude Include="Playground\LightInteractionPropertiesHandles.h" />
     <ClInclude Include="Playground\LightProperties.h" />
     <ClInclude Include="Playground\LightPropertiesHandles.h" />
+    <ClInclude Include="Playground\ModelBuilder.h" />
     <ClInclude Include="Playground\ModelRenderer.h" />
     <ClInclude Include="Playground\Projector.h" />
     <ClInclude Include="Playground\Scene.h" />
@@ -148,16 +154,18 @@
     <ClInclude Include="Playground\Screen.h" />
     <ClInclude Include="Playground\ScreenRenderer.h" />
     <ClInclude Include="Playground\Sfere.h" />
+    <ClInclude Include="Playground\SfereModelBuilder.h" />
     <ClInclude Include="Playground\SfereRenderer.h" />
     <ClInclude Include="Playground\Transform.h" />
+    <ClInclude Include="Playground\TransformationBuilder.h" />
     <ClInclude Include="Playground\TransformationMatricesHandles.h" />
     <ClInclude Include="Playground\View.h" />
     <ClInclude Include="ShaderLoader\Shader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Playground\SimpleFragmentShader.frag" />
-    <None Include="Playground\SimpleVertexShader.vert" />
+    <None Include="SimpleFragmentShader.frag" />
+    <None Include="SimpleVertexShader.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
