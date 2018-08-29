@@ -4,9 +4,9 @@ AbstractModel::AbstractModel()
 {
 }
 
-AbstractModel::AbstractModel(ModelRenderer  &renderer, glm::mat4& modelMatrix, LightInteractionProperties& materialProperties)
+AbstractModel::AbstractModel(ModelRenderer* renderer, glm::mat4& modelMatrix, LightInteractionProperties& materialProperties)
 {
-	this->_renderer = &renderer;
+	this->_renderer = renderer;
 	this->_modelCoordinates = modelMatrix;
 	this->_materialProperties = materialProperties;
 }

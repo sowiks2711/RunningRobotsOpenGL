@@ -6,8 +6,8 @@
 class SfereModelBuilder :
 	public ModelBuilder
 {
-	SfereRenderer _renderer;
-	Sfere _geometry;
+	SfereRenderer* _renderer;
+	Sfere* _geometry;
 protected:
 	ModelRenderer* getModelRenderer();
 public:
