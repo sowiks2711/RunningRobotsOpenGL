@@ -23,12 +23,12 @@ void SceneRenderer::renderModel(AbstractModel& model, glm::mat4& view, glm::mat4
 	model.render(matricesIds.modelViewId, mv, matricesIds.projectionId, projection);
 }
 
-void SceneRenderer::bindColourProperties(const LightInteractionProperties& properties)
+void SceneRenderer::bindColourProperties(const LightInteractionProperties& _properties)
 {
-	glUniform1f(materialPropertiesIds.shininessId, properties.shininess);
-	glUniform4fv(materialPropertiesIds.emissionId, 1, &properties.emission.x);
-	glUniform4fv(materialPropertiesIds.diffuseId, 1, &properties.diffuse.x);
-	glUniform4fv(materialPropertiesIds.specularId, 1, &properties.specular.x);
+	glUniform1f(materialPropertiesIds.shininessId, _properties.shininess);
+	glUniform4fv(materialPropertiesIds.emissionId, 1, &_properties.emission.x);
+	glUniform4fv(materialPropertiesIds.diffuseId, 1, &_properties.diffuse.x);
+	glUniform4fv(materialPropertiesIds.specularId, 1, &_properties.specular.x);
 }
 void SceneRenderer::bindLigths(glm::mat4& view, std::vector<glm::vec4>& lightPositions, std::vector<glm::vec4>& lightColors)
 {

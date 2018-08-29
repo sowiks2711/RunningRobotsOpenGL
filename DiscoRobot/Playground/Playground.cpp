@@ -21,27 +21,28 @@
 #include "SceneRenderer.h"
 #include "Scene.h"
 #include "Transform.h"
+#include "TransformationBuilder.h"
 
 using namespace glm;
 
 int main( void )
 {
-	// Initialise GLFW
 	ScreenRenderer screenRenderer = ScreenRenderer(1024, 868);
 	Screen screen = Screen(screenRenderer);
 	Cube cube = Cube();
 	Sfere sfere = Sfere(20, 50, 50);
 	CubeRenderer cubeRenderer = CubeRenderer(cube);
 	SfereRenderer sfereRenderer = SfereRenderer(sfere);
+	TransformationBuilder transformationBuilder = TransformationBuilder();
 
-	glm::mat4 cubetranslation, sfereTranslation, rotation, scaling, scaling2, viewMatrix, projection, cubemodel, sferemodel, trianglemodel;
-	glm::vec3 rotationAxis(1,1,0);
-	rotation = Transform::rotate(45.0f, rotationAxis);
-	scaling = Transform::scale(0.15f, 0.15f, 0.15f);
-	scaling2 = Transform::scale(0.5f, 0.5f, 0.5f);
-	cubetranslation = Transform::translate(0, 0, 1)* Transform::translate(1, 0, 0);
-	sfereTranslation = Transform::translate(0, 0, 5)* Transform::translate(-1.5, 0, 0);
-	cubemodel = cubetranslation * rotation * scaling2;
+
+	glm::mat4 viewMatrix, projection, cubemodel, sferemodel;
+	cubemodel = transformationBuilder
+		.scale(0.5f)
+		.rotate(45.0f, glm::vec3(1, 1, 0))
+		.translate(0, 0, 1)
+		.translate(1, 0, 0)
+		.build();
 	viewMatrix = Transform::lookAt(
 		vec3(0, 0, -1),
 		vec3(0, 0, 0),
@@ -62,9 +63,16 @@ int main( void )
 	cubeProperties.shininess = 400;
 	cubeProperties.specular = glm::vec4(1, 1, 1, 1);
 
+	transformationBuilder.reset();
+	sferemodel = transformationBuilder
+		.scale(0.15f)
+		.rotate(45.0f, glm::vec3(1, 1, 0))
+		.translate(0, 0, 5)
+		.translate(-1.5, 0, 0)
+		.build();
+
+	transformationBuilder.reset();
 	AbstractModel cubeModel = AbstractModel(cubeRenderer, cubemodel, cubeProperties);
-	sferemodel = sfereTranslation * rotation * scaling;
-	//AbstractModel cubeModel2 = AbstractModel(cube, cubeRenderer, cubemodel2);
 	LightInteractionProperties sfereProperties = LightInteractionProperties();
 	sfereProperties.emission = glm::vec4(0.1, 0.1, 0.1, 1);
 	sfereProperties.diffuse = glm::vec4(0.2, 0.41, 0.11, 1);
@@ -75,6 +83,8 @@ int main( void )
 	LightProperties l2 = { glm::vec4(-1,1,-1,1), glm::vec4(0,1,0,1) };
 	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };
 	LightProperties l4 = { glm::vec4(-1,-1,1,1), glm::vec4(1,1,0,1) };
+
+
 	Scene scene = Scene(view, projector, sceneRenderer);
 	scene.addLight(l1);
 	scene.addLight(l2);
