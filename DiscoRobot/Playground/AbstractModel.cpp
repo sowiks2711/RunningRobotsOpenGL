@@ -16,6 +16,11 @@ void AbstractModel::render(const GLuint mvId, const glm::mat4 &MV, const GLuint 
 	this->_renderer->render(mvId, MV, pId, P);
 }
 
+void AbstractModel::bindMaterialProperties(LightInteractionPropertiesHandles & handles)
+{
+	_renderer->bindColourProperties(_materialProperties, handles);
+}
+
 glm::mat4 & AbstractModel::getModelCoordinates()
 {
 	return _modelCoordinates;

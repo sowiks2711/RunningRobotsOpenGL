@@ -32,14 +32,14 @@ void ModelRenderer::render( const GLuint mvId, const glm::mat4 &MV, const GLuint
 	glUniformMatrix4fv(mvId, 1, GL_FALSE, &MV[0][0]);
 	glUniformMatrix4fv(pId, 1, GL_FALSE, &P[0][0]);
 	glBindVertexArray(_vertexArrayId);
-	BindArrayToAtrribute(0, _verticesBufferId, 3);
-	BindArrayToAtrribute(1, _normalsBufferId, 3);
+	bindArrayToAtrribute(0, _verticesBufferId, 3);
+	bindArrayToAtrribute(1, _normalsBufferId, 3);
 	draw();
 	glDisableVertexAttribArray(0);
 }
 
 
-void ModelRenderer::BindArrayToAtrribute(GLuint attributeId, GLuint bufferId, int vecDimentions)
+void ModelRenderer::bindArrayToAtrribute(GLuint attributeId, GLuint bufferId, int vecDimentions)
 {
 	glEnableVertexAttribArray(attributeId);
 	glBindBuffer(GL_ARRAY_BUFFER, bufferId);
@@ -51,6 +51,14 @@ void ModelRenderer::BindArrayToAtrribute(GLuint attributeId, GLuint bufferId, in
 		3 * sizeof(GLfloat),
 		(void*)0
 	);
+}
+
+void ModelRenderer::bindColourProperties(const LightInteractionProperties & _properties, const LightInteractionPropertiesHandles & handles)
+{
+	glUniform1f(handles.shininessId, _properties.shininess);
+	glUniform4fv(handles.emissionId, 1, &_properties.emission.x);
+	glUniform4fv(handles.diffuseId, 1, &_properties.diffuse.x);
+	glUniform4fv(handles.specularId, 1, &_properties.specular.x);
 }
 
 

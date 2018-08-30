@@ -7,6 +7,7 @@
 #include <GLFW/glfw3.h>
 #include "AbstractGeometry.h"
 #include "LightInteractionProperties.h"
+#include "LightInteractionPropertiesHandles.h"
 
 class ModelRenderer
 {
@@ -21,7 +22,8 @@ protected:
 public:
 	ModelRenderer();
 	virtual void render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4& P);
-	void BindArrayToAtrribute(GLuint attributeId, GLuint bufferId, int vecDimentions);
+	void bindArrayToAtrribute(GLuint attributeId, GLuint bufferId, int vecDimentions);
+	void bindColourProperties(const LightInteractionProperties& _properties, const LightInteractionPropertiesHandles& handles);
 	~ModelRenderer();
 };
 

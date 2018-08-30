@@ -31,11 +31,12 @@ void Scene::render()
 
 	for (AbstractModel* model : _models)
 	{
-		_renderer.bindColourProperties(model->getMaterialProperties());
+
+		model->bindMaterialProperties(_renderer.getMaterialPropertiesHandles());
+		//_renderer.bindColourProperties(model->getMaterialProperties());
 		_renderer.renderModel(*model, _view.getView(), _projector.getProjection());
 	}
 }
-
 
 void Scene::clearScene()
 {
