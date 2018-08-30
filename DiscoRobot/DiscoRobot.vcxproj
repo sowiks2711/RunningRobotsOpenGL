@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HierarchicalModel.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Playground\AbstractGeometry.cpp" />
     <ClCompile Include="Playground\AbstractModel.cpp" />
@@ -165,6 +166,7 @@
     <ClInclude Include="Playground\View.h" />
     <ClInclude Include="ShaderLoader\Shader.hpp" />
     <ClInclude Include="SimpleModel.h" />
+    <ClInclude Include="HierarchicalModel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

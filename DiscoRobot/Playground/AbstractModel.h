@@ -16,7 +16,7 @@ protected:
 public:
 	AbstractModel();
 	AbstractModel(ModelRenderer* renderer, glm::mat4& modelMatrix, LightInteractionProperties& materialProperties);
-	virtual void render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4 &P) = 0;
+	virtual void render(const GLuint mvId, const glm::mat4& view, const GLuint pId, const glm::mat4 &P) = 0;
 	virtual void bindMaterialProperties(LightInteractionPropertiesHandles& handles) = 0;
 	glm::mat4 &getModelCoordinates();
 	const LightInteractionProperties& getMaterialProperties();
