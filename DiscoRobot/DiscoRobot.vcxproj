@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="Playground\AbstractGeometry.cpp" />
     <ClCompile Include="Playground\AbstractModel.cpp" />
     <ClCompile Include="Playground\Cube.cpp" />
@@ -137,6 +138,7 @@
     <ClCompile Include="ShaderLoader\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="Playground\AbstractGeometry.h" />
     <ClInclude Include="Playground\AbstractModel.h" />
     <ClInclude Include="Playground\Cube.h" />

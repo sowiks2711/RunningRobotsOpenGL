@@ -31,7 +31,7 @@ CubeRenderer::CubeRenderer(Cube & cube)
 {
 	_indicesSize = cube.getIndicesSize();
 	_indicesCount = cube.getIndicesCount();
-	init(cube);
+	init(&cube);
 	initIndexes(cube);
 
 }

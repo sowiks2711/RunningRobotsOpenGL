@@ -13,9 +13,9 @@ Scene::Scene(View& view, Projector& projector, SceneRenderer& renderer)
 	this->_renderer = renderer;
 }
 
-void Scene::addModel(const AbstractModel & model)
+void Scene::addModel(AbstractModel& model)
 {
-	_models.push_back(model);
+	_models.push_back(&model);
 }
 
 void Scene::addLight(LightProperties light)
@@ -29,10 +29,10 @@ void Scene::render()
 	_renderer.useDefaultShader();
 	_renderer.bindLigths(_view.getView(), _lightPositions, _lightColors);
 
-	for (AbstractModel model : _models)
+	for (AbstractModel* model : _models)
 	{
-		_renderer.bindColourProperties(model.getMaterialProperties());
-		_renderer.renderModel(model, _view.getView(), _projector.getProjection());
+		_renderer.bindColourProperties(model->getMaterialProperties());
+		_renderer.renderModel(*model, _view.getView(), _projector.getProjection());
 	}
 }
 

@@ -9,7 +9,7 @@ ModelRenderer* SfereModelBuilder::getModelRenderer()
 
 SfereModelBuilder::SfereModelBuilder()
 {
-	_geometry = new Sfere(20, 20, 50);
+	_geometry = new Sfere(20, 50, 50);
 	_renderer = new SfereRenderer(*_geometry);
 }
 

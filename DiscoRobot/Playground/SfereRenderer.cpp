@@ -6,9 +6,9 @@ SfereRenderer::SfereRenderer()
 {
 }
 
-SfereRenderer::SfereRenderer(AbstractGeometry & sfere)
+SfereRenderer::SfereRenderer(Sfere & sfere)
 {
-	init(sfere);
+	init(&sfere);
 }
 
 

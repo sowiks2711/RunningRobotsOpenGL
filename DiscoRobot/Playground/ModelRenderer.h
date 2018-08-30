@@ -16,7 +16,7 @@ protected:
 	GLuint _vertexArrayId;
 	GLuint _verticesBufferId;
 	GLuint _normalsBufferId;
-	virtual void init(AbstractGeometry& geometry);
+	virtual void init(AbstractGeometry* geometry);
 	virtual void draw();
 public:
 	ModelRenderer();

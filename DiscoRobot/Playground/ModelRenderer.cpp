@@ -6,13 +6,13 @@ ModelRenderer::ModelRenderer()
 {
 }
 
-void ModelRenderer::init(AbstractGeometry& geometry)
+void ModelRenderer::init(AbstractGeometry* geometry)
 {
 	glGenVertexArrays(1, &_vertexArrayId);
 	glBindVertexArray(_vertexArrayId);
-	initOpenGlBuffer(_verticesBufferId, geometry.getVerticesSize(), geometry.getVerticesArrayStart());
-	initOpenGlBuffer(_normalsBufferId, geometry.getNormalsSize(), geometry.getNormalsArrayStart());
-	this->_triangles = geometry.getTrianglesCount();
+	initOpenGlBuffer(_verticesBufferId, geometry->getVerticesSize(), geometry->getVerticesArrayStart());
+	initOpenGlBuffer(_normalsBufferId, geometry->getNormalsSize(), geometry->getNormalsArrayStart());
+	this->_triangles = geometry->getTrianglesCount();
 }
 
 void ModelRenderer::draw()

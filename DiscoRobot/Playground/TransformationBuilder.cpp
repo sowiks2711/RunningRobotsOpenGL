@@ -8,7 +8,9 @@ TransformationBuilder::TransformationBuilder()
 
 glm::mat4 TransformationBuilder::build()
 {
-	return _transformation;
+	glm::mat4 result = _transformation;
+	reset();
+	return result;
 }
 
 void TransformationBuilder::reset()
@@ -20,6 +22,13 @@ TransformationBuilder& TransformationBuilder::rotate(float degrees, const glm::v
 {
 	float angle = degrees *  M_PI/180;
 	_transformation = Transform::rotate(angle, rotationAxis) * _transformation;
+	return *this;
+}
+TransformationBuilder& TransformationBuilder::perspective(float FoV, float aspect, float zNear, float zFar)
+{
+	float angle = FoV *  M_PI/180;
+
+	_transformation = Transform::perspective(angle, aspect, zNear, zFar) * _transformation;
 	return *this;
 }
 

@@ -31,57 +31,76 @@ int main( void )
 {
 	ScreenRenderer screenRenderer = ScreenRenderer(1024, 868);
 	Screen screen = Screen(screenRenderer);
-	Sfere sfere = Sfere(20, 50, 50);
-	SfereRenderer sfereRenderer = SfereRenderer(sfere);
 	TransformationBuilder transformationBuilder = TransformationBuilder();
 	SfereModelBuilder sfereBuilder = SfereModelBuilder();
 	CubeModelBuilder cubeBuilder = CubeModelBuilder();
 
 
-	glm::mat4 viewMatrix, projection, cubemodel, sferemodel;
-	cubemodel = transformationBuilder
-		.scale(0.5f)
-		.rotate(45.0f, glm::vec3(1, 1, 0))
+	glm::mat4 viewMatrix, projection, cubeTransformation, sfereTransformation;
+	cubeTransformation = transformationBuilder
+		.scale(0.8f, 1.2f, 0.8f)
+		//.rotate(45.0f, glm::vec3(1, 1, 0))
 		.translate(0, 0, 1)
-		.translate(1, 0, 0)
+		.translate(0, -0.2, 0)
 		.build();
 
-	AbstractModel cubeModel = cubeBuilder
+	AbstractModel* cubeModel = &cubeBuilder
 		.setDiffuse(0, 0.61, 0)
 		.setEmission(0.1, 0, 0)
 		.setShininess(400)
 		.setSpecular(1, 1, 1)
-		.setTransformation(cubemodel)
+		.setTransformation(cubeTransformation)
 		.build();
 
-	transformationBuilder.reset();
-	sferemodel = transformationBuilder
-		.scale(0.15f)
-		.rotate(45.0f, glm::vec3(1, 1, 0))
-		.translate(0, 0, 5)
-		.translate(-1.5, 0, 0)
+	AbstractModel* cubeModel2 = &cubeBuilder
+		.setDiffuse(0, 0.61, 0)
+		.setEmission(0.1, 0, 0)
+		.setShininess(400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(
+			transformationBuilder.scale(0.3, 0.5, 0.3).translate(0.75,0.2,1).build()
+		)
 		.build();
 
-	transformationBuilder.reset();
-	LightInteractionProperties sfereProperties = LightInteractionProperties();
-	sfereProperties.emission = glm::vec4(0.1, 0.1, 0.1, 1);
-	sfereProperties.diffuse = glm::vec4(0.2, 0.41, 0.11, 1);
-	sfereProperties.shininess = 400;
-	sfereProperties.specular = glm::vec4(1, 1, 1, 1);
-	AbstractModel sfereModel = AbstractModel(&sfereRenderer, sferemodel, sfereProperties);
+	sfereTransformation = transformationBuilder
+		.scale(0.03f, 0.02f, 0.02f)
+		//.rotate(45.0f, glm::vec3(1, 1, 0))
+		.translate(0, 0, 1)
+		.translate(0, 1, 0)
+		.build();
 
+	AbstractModel* sfereModel = &sfereBuilder
+		.setEmission(0.8, 0.1, 0.5)
+		.setDiffuse(0.2, 0.41, 0.11)
+		.setShininess(400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(sfereTransformation)
+		.build();
+
+	AbstractModel* sfereModel2 = &sfereBuilder
+		.setEmission(0.1, 0.1, 0.1)
+		.setDiffuse(0.2, 0.41, 0.11)
+		.setShininess(400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(
+			transformationBuilder.scale(0.10).translate(1,-1,12).build()
+		)
+		.build();
+	
 	viewMatrix = Transform::lookAt(
 		vec3(0, 0, -1),
 		vec3(0, 0, 0),
 		vec3(0, 1, 0)
 	);
 	View view = View(viewMatrix);
-	float FoV = 100 * M_PI/180;
-	projection = Transform::perspective(FoV,
-		screen.getAspectRatio(),
-		0.1f,
-		100.0f
-	);
+	projection = transformationBuilder
+		.perspective(
+			90,
+			screen.getAspectRatio(),
+			0.1f,
+			100.0f
+		).build();
+
 	Projector projector = Projector(projection, screen);
 	SceneRenderer sceneRenderer = SceneRenderer();
 
@@ -96,8 +115,10 @@ int main( void )
 	scene.addLight(l2);
 	scene.addLight(l3);
 	scene.addLight(l4);
-	scene.addModel(sfereModel);
-	scene.addModel(cubeModel);
+	scene.addModel(*sfereModel);
+	scene.addModel(*cubeModel);
+	//scene.addModel(*sfereModel2);
+	scene.addModel(*cubeModel2);
 
 	do {
 		scene.clearScene();

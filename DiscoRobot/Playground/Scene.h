@@ -12,11 +12,11 @@ class Scene
 	SceneRenderer _renderer;
 	std::vector<glm::vec4> _lightPositions;
 	std::vector<glm::vec4> _lightColors;
-	std::vector<AbstractModel> _models;
+	std::vector<AbstractModel*> _models;
 public:
 	Scene();
 	Scene(View& view, Projector& projector, SceneRenderer& renderer);
-	void addModel(const AbstractModel& model);
+	void addModel(AbstractModel& model);
 	void addLight(LightProperties light);
 	void render();
 	void clearScene();
