@@ -42,9 +42,9 @@ ModelBuilder & ModelBuilder::setTransformation(glm::mat4 transformation)
 	return *this;
 }
 
-AbstractModel& ModelBuilder::build()
+SimpleModel& ModelBuilder::build()
 {
-	AbstractModel* model = new AbstractModel(getModelRenderer(), _transformation, _properties);
+	SimpleModel* model = new SimpleModel(getModelRenderer(), _transformation, _properties);
 	_modelTrackingList.push_back(model);
 	return *model;
 }

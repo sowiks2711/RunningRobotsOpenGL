@@ -11,16 +11,6 @@ AbstractModel::AbstractModel(ModelRenderer* renderer, glm::mat4& modelMatrix, Li
 	this->_materialProperties = materialProperties;
 }
 
-void AbstractModel::render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4 &P) 
-{
-	this->_renderer->render(mvId, MV, pId, P);
-}
-
-void AbstractModel::bindMaterialProperties(LightInteractionPropertiesHandles & handles)
-{
-	_renderer->bindColourProperties(_materialProperties, handles);
-}
-
 glm::mat4 & AbstractModel::getModelCoordinates()
 {
 	return _modelCoordinates;

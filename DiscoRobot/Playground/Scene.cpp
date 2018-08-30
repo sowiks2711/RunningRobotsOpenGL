@@ -31,9 +31,6 @@ void Scene::render()
 
 	for (AbstractModel* model : _models)
 	{
-
-		model->bindMaterialProperties(_renderer.getMaterialPropertiesHandles());
-		//_renderer.bindColourProperties(model->getMaterialProperties());
 		_renderer.renderModel(*model, _view.getView(), _projector.getProjection());
 	}
 }

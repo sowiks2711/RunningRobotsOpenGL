@@ -1,5 +1,6 @@
 #pragma once
 #include "AbstractModel.h"
+#include "../SimpleModel.h"
 #include <glm\glm.hpp>
 
 class ModelBuilder
@@ -16,7 +17,7 @@ public:
 	ModelBuilder& setEmission(GLfloat r, GLfloat g, GLfloat b);
 	ModelBuilder& setSpecular(GLfloat r, GLfloat g, GLfloat b);
 	ModelBuilder& setTransformation(glm::mat4 transformation);
-	AbstractModel& build();
+	SimpleModel& build();
 	~ModelBuilder();
 };
 

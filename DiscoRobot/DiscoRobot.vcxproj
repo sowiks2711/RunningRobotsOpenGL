@@ -136,6 +136,7 @@
     <ClCompile Include="Playground\TransformationBuilder.cpp" />
     <ClCompile Include="Playground\View.cpp" />
     <ClCompile Include="ShaderLoader\Shader.cpp" />
+    <ClCompile Include="SimpleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ModelFactory.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Playground\TransformationMatricesHandles.h" />
     <ClInclude Include="Playground\View.h" />
     <ClInclude Include="ShaderLoader\Shader.hpp" />
+    <ClInclude Include="SimpleModel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

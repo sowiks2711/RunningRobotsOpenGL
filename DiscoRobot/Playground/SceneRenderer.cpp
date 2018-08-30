@@ -20,6 +20,7 @@ SceneRenderer::SceneRenderer()
 void SceneRenderer::renderModel(AbstractModel& model, glm::mat4& view, glm::mat4& projection)
 {
 	glm::mat4 mv = view * model.getModelCoordinates();
+	model.bindMaterialProperties(getMaterialPropertiesHandles());
 	model.render(matricesIds.modelViewId, mv, matricesIds.projectionId, projection);
 }
 
