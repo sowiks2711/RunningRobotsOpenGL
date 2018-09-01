@@ -24,6 +24,9 @@
 #include "TransformationBuilder.h"
 #include "CubeModelBuilder.h"
 #include "SfereModelBuilder.h"
+#include "..\HierarchicalModel.h"
+#include "..\RobotPartsFactory.h"
+#include "..\RobotFactory.h"
 
 using namespace glm;
 
@@ -32,63 +35,13 @@ int main( void )
 	ScreenRenderer screenRenderer = ScreenRenderer(1024, 868);
 	Screen screen = Screen(screenRenderer);
 	TransformationBuilder transformationBuilder = TransformationBuilder();
-	SfereModelBuilder sfereBuilder = SfereModelBuilder();
-	CubeModelBuilder cubeBuilder = CubeModelBuilder();
+	RobotPartsFactory partsFactory = RobotPartsFactory();
+	RobotFactory robotFactory = RobotFactory(partsFactory);
 
-
-	glm::mat4 viewMatrix, projection, cubeTransformation, sfereTransformation;
-	cubeTransformation = transformationBuilder
-		.scale(0.8f, 1.2f, 0.8f)
-		//.rotate(45.0f, glm::vec3(1, 1, 0))
-		.translate(0, 0, 1)
-		.translate(0, -0.2, 0)
-		.build();
-
-	AbstractModel* cubeModel = &cubeBuilder
-		.setDiffuse(0, 0.61, 0)
-		.setEmission(0.1, 0, 0)
-		.setShininess(400)
-		.setSpecular(1, 1, 1)
-		.setTransformation(cubeTransformation)
-		.build();
-
-	AbstractModel* cubeModel2 = &cubeBuilder
-		.setDiffuse(0, 0.61, 0)
-		.setEmission(0.1, 0, 0)
-		.setShininess(400)
-		.setSpecular(1, 1, 1)
-		.setTransformation(
-			transformationBuilder.scale(0.3, 0.5, 0.3).translate(0.75,0.2,1).build()
-		)
-		.build();
-
-	sfereTransformation = transformationBuilder
-		.scale(0.03f, 0.02f, 0.02f)
-		//.rotate(45.0f, glm::vec3(1, 1, 0))
-		.translate(0, 0, 1)
-		.translate(0, 1, 0)
-		.build();
-
-	AbstractModel* sfereModel = &sfereBuilder
-		.setEmission(0.8, 0.1, 0.5)
-		.setDiffuse(0.2, 0.41, 0.11)
-		.setShininess(400)
-		.setSpecular(1, 1, 1)
-		.setTransformation(sfereTransformation)
-		.build();
-
-	AbstractModel* sfereModel2 = &sfereBuilder
-		.setEmission(0.1, 0.1, 0.1)
-		.setDiffuse(0.2, 0.41, 0.11)
-		.setShininess(400)
-		.setSpecular(1, 1, 1)
-		.setTransformation(
-			transformationBuilder.scale(0.10).translate(1,-1,12).build()
-		)
-		.build();
+	glm::mat4 viewMatrix, projection;
 	
 	viewMatrix = Transform::lookAt(
-		vec3(0, 0, -1),
+		vec3(0, 0, -15),
 		vec3(0, 0, 0),
 		vec3(0, 1, 0)
 	);
@@ -115,15 +68,22 @@ int main( void )
 	scene.addLight(l2);
 	scene.addLight(l3);
 	scene.addLight(l4);
-	scene.addModel(*sfereModel);
-	scene.addModel(*cubeModel);
-	//scene.addModel(*sfereModel2);
-	scene.addModel(*cubeModel2);
+	HierarchicalModel* robot = robotFactory.createRobot();
+	scene.addModel(robot);
+	//rootanimation = transformationBuilder.scale(2).build();
 
+	int i = 1;
+	int step = 1;
 	do {
+
 		scene.clearScene();
 		scene.render();
 		screen.swapBuffers();
+		//animation = animation * transformationBuilder.rotate(0.5, glm::vec3(1, 1, 1)).build();
+		//rootanimation = rootanimation * transformationBuilder.translate(0, 0.001 * i,0).build();
+		if ((i+80) % 160 == 0) step = -step;
+		i += step;
+
 	} // Check if the ESC key was pressed or the window was closed
 	while( screen.escapeHasNotBeenPressed());
 	glfwTerminate();

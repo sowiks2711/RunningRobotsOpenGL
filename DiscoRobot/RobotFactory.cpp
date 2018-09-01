@@ -1,0 +1,129 @@
+#include "RobotFactory.h"
+
+
+
+RobotFactory::RobotFactory()
+{
+	wrappersTrackerList.clear();
+}
+
+RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
+{
+	_partsFactory = &partsFactory;
+}
+
+HierarchicalModel * RobotFactory::createRobot()
+{
+	SimpleModel* mouthPart = _partsFactory->createMouth();
+	SimpleModel* leftFeetPart = _partsFactory->createFeet();
+	SimpleModel* rightFeetPart = _partsFactory->createFeet();
+	SimpleModel* leftEyePart = _partsFactory->createEye();
+	SimpleModel* rightEyePart = _partsFactory->createEye();
+	SimpleModel* chestPart = _partsFactory->createChest();
+	SimpleModel* leftArmPart = _partsFactory->createLongLink();
+	SimpleModel* rightArmPart = _partsFactory->createLongLink();
+	SimpleModel* headPart = _partsFactory->createHead();
+	SimpleModel* leftHoopPart = _partsFactory->createBearing();
+	SimpleModel* rightHoopPart = _partsFactory->createBearing();
+	SimpleModel* leftElbowPart = _partsFactory->createBearing();
+	SimpleModel* rightElbowPart = _partsFactory->createBearing();
+	SimpleModel* leftPanPart = _partsFactory->createBearing();
+	SimpleModel* rightPanPart = _partsFactory->createBearing();
+	SimpleModel* leftForearmPart = _partsFactory->createShortLink();
+	SimpleModel* rightForearmPart = _partsFactory->createShortLink();
+	SimpleModel* leftKneePart = _partsFactory->createBearing();
+	SimpleModel* rightKneePart = _partsFactory->createBearing();
+	SimpleModel* leftTightPart = _partsFactory->createLongLink();
+	SimpleModel* rightTightPart = _partsFactory->createLongLink();
+	SimpleModel* leftCalfPart = _partsFactory->createLongLink();
+	SimpleModel* rightCalfPart = _partsFactory->createLongLink();
+
+	HierarchicalModel* chest = new HierarchicalModel(chestPart);
+	HierarchicalModel* leftCalf = new HierarchicalModel(leftCalfPart);
+	HierarchicalModel* rightCalf = new HierarchicalModel(rightCalfPart);
+	HierarchicalModel* leftKnee = new HierarchicalModel(leftKneePart);
+	HierarchicalModel* rightKnee = new HierarchicalModel(rightKneePart);
+	HierarchicalModel* leftTight = new HierarchicalModel(leftTightPart);
+	HierarchicalModel* rightTight = new HierarchicalModel(rightTightPart);
+	HierarchicalModel* leftPan = new HierarchicalModel(leftPanPart);
+	HierarchicalModel* rightPan = new HierarchicalModel(rightPanPart);
+	HierarchicalModel* leftForearm = new HierarchicalModel(leftForearmPart);
+	HierarchicalModel* rightForearm = new HierarchicalModel(rightForearmPart);
+	HierarchicalModel* leftHoop = new HierarchicalModel(leftHoopPart);
+	HierarchicalModel* rightHoop = new HierarchicalModel(rightHoopPart);
+	HierarchicalModel* leftArm = new HierarchicalModel(leftArmPart);
+	HierarchicalModel* rightArm = new HierarchicalModel(rightArmPart);
+	HierarchicalModel* leftElbow = new HierarchicalModel(leftElbowPart);
+	HierarchicalModel* rightElbow = new HierarchicalModel(rightElbowPart);
+	HierarchicalModel* head = new HierarchicalModel(headPart);
+	HierarchicalModel* leftEye = new HierarchicalModel(leftEyePart);
+	HierarchicalModel* rightEye = new HierarchicalModel(rightEyePart);
+	HierarchicalModel* mouth = new HierarchicalModel(mouthPart);
+	HierarchicalModel* leftFeet = new HierarchicalModel(leftFeetPart);
+	HierarchicalModel* rightFeet = new HierarchicalModel(rightFeetPart);
+	wrappersTrackerList.push_back(chest);
+	wrappersTrackerList.push_back(leftCalf);
+	wrappersTrackerList.push_back(rightCalf);
+	wrappersTrackerList.push_back(leftKnee);
+	wrappersTrackerList.push_back(rightKnee);
+	wrappersTrackerList.push_back(leftTight);
+	wrappersTrackerList.push_back(rightTight);
+	wrappersTrackerList.push_back(leftPan);
+	wrappersTrackerList.push_back(rightPan);
+	wrappersTrackerList.push_back(leftForearm);
+	wrappersTrackerList.push_back(rightForearm);
+	wrappersTrackerList.push_back(leftHoop);
+	wrappersTrackerList.push_back(rightHoop);
+	wrappersTrackerList.push_back(leftArm);
+	wrappersTrackerList.push_back(rightArm);
+	wrappersTrackerList.push_back(leftElbow);
+	wrappersTrackerList.push_back(rightElbow);
+	wrappersTrackerList.push_back(head);
+	wrappersTrackerList.push_back(leftEye);
+	wrappersTrackerList.push_back(rightEye);
+	wrappersTrackerList.push_back(mouth);
+	wrappersTrackerList.push_back(leftFeet);
+	wrappersTrackerList.push_back(rightFeet);
+
+	glm::mat4 elbowToForearm = transformationBuilder.translate(0, -1.8, 0).build();
+	leftElbow->addChild(*leftForearm, elbowToForearm);
+	rightElbow->addChild(*rightForearm, elbowToForearm);
+	glm::mat4 armToElbow = transformationBuilder.translate(0, -2.3, 0).build();
+	leftArm->addChild(*leftElbow, armToElbow);
+	rightArm->addChild(*rightElbow, armToElbow);
+	glm::mat4 hoopToArm = transformationBuilder.translate(0, -2.3, 0).build();
+	leftHoop->addChild(*leftArm, hoopToArm);
+	rightHoop->addChild(*rightArm, hoopToArm);
+	glm::mat4 chestToLeftHoop = transformationBuilder.translate(3, 2, 0).build();
+	chest->addChild(*leftHoop, chestToLeftHoop);
+	glm::mat4 chestToRightHoop = transformationBuilder.translate(-3, 2, 0).build();
+	chest->addChild(*rightHoop, chestToRightHoop);
+	glm::mat4 rootToHead = transformationBuilder.translate(0, 4, 0).build();
+	chest->addChild(*head, rootToHead);
+	glm::mat4 rootToLeftPan = transformationBuilder.translate(-1, -3.3, 0).build();
+	glm::mat4 rootToRightPan = transformationBuilder.translate(1, -3.3, 0).build();
+	chest->addChild(*leftPan, rootToLeftPan);
+	chest->addChild(*rightPan, rootToRightPan);
+	leftPan->addChild(*leftTight, hoopToArm);
+	rightPan->addChild(*rightTight, hoopToArm);
+	leftTight->addChild(*leftKnee, armToElbow);
+	rightTight->addChild(*rightKnee, armToElbow);
+	leftKnee->addChild(*leftCalf, hoopToArm);
+	rightKnee->addChild(*rightCalf, hoopToArm);
+	leftCalf->addChild(*leftFeet, armToElbow);
+	rightCalf->addChild(*rightFeet, armToElbow);
+	glm::mat4 headToLeftEye = transformationBuilder.translate(-1, 0.5, -1.3).build();
+	glm::mat4 headToRightEye = transformationBuilder.translate(1, 0.5, -1.3).build();
+	glm::mat4 headToMouth = transformationBuilder.translate(0, -0.5, -1.3).build();
+	head->addChild(*leftEye, headToLeftEye);
+	head->addChild(*rightEye, headToRightEye);
+	head->addChild(*mouth, headToMouth);
+
+	return chest;
+}
+
+RobotFactory::~RobotFactory()
+{
+	for (HierarchicalModel* model : wrappersTrackerList)
+		delete model;
+}

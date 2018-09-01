@@ -16,7 +16,7 @@ class Scene
 public:
 	Scene();
 	Scene(View& view, Projector& projector, SceneRenderer& renderer);
-	void addModel(AbstractModel& model);
+	void addModel(AbstractModel* model);
 	void addLight(LightProperties light);
 	void render();
 	void clearScene();

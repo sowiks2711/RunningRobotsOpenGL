@@ -116,7 +116,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="HierarchicalModel.cpp" />
-    <ClCompile Include="ModelFactory.cpp" />
+    <ClCompile Include="RobotFactory.cpp" />
+    <ClCompile Include="RobotPartsFactory.cpp" />
     <ClCompile Include="Playground\AbstractGeometry.cpp" />
     <ClCompile Include="Playground\AbstractModel.cpp" />
     <ClCompile Include="Playground\Cube.cpp" />
@@ -140,7 +141,8 @@
     <ClCompile Include="SimpleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ModelFactory.h" />
+    <ClInclude Include="RobotFactory.h" />
+    <ClInclude Include="RobotPartsFactory.h" />
     <ClInclude Include="Playground\AbstractGeometry.h" />
     <ClInclude Include="Playground\AbstractModel.h" />
     <ClInclude Include="Playground\Cube.h" />

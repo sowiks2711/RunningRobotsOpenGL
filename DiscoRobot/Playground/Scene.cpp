@@ -13,9 +13,9 @@ Scene::Scene(View& view, Projector& projector, SceneRenderer& renderer)
 	this->_renderer = renderer;
 }
 
-void Scene::addModel(AbstractModel& model)
+void Scene::addModel(AbstractModel* model)
 {
-	_models.push_back(&model);
+	_models.push_back(model);
 }
 
 void Scene::addLight(LightProperties light)
