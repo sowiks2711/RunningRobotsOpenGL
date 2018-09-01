@@ -25,101 +25,100 @@ RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
 
 HierarchicalModel * RobotFactory::createRobot()
 {
-	SimpleModel* mouthPart = _partsFactory->createMouth();
-	SimpleModel* leftFeetPart = _partsFactory->createFeet();
-	SimpleModel* rightFeetPart = _partsFactory->createFeet();
-	SimpleModel* leftEyePart = _partsFactory->createEye();
-	SimpleModel* rightEyePart = _partsFactory->createEye();
 	SimpleModel* chestPart = _partsFactory->createChest();
-	SimpleModel* leftArmPart = _partsFactory->createLongLink();
-	SimpleModel* rightArmPart = _partsFactory->createLongLink();
-	SimpleModel* headPart = _partsFactory->createHead();
-	SimpleModel* leftHoopPart = _partsFactory->createBearing();
-	SimpleModel* rightHoopPart = _partsFactory->createBearing();
-	SimpleModel* leftElbowPart = _partsFactory->createBearing();
-	SimpleModel* rightElbowPart = _partsFactory->createBearing();
-	SimpleModel* leftPanPart = _partsFactory->createBearing();
-	SimpleModel* rightPanPart = _partsFactory->createBearing();
-	SimpleModel* leftForearmPart = _partsFactory->createShortLink();
-	SimpleModel* rightForearmPart = _partsFactory->createShortLink();
-	SimpleModel* leftKneePart = _partsFactory->createBearing();
-	SimpleModel* rightKneePart = _partsFactory->createBearing();
-	SimpleModel* leftTightPart = _partsFactory->createLongLink();
-	SimpleModel* rightTightPart = _partsFactory->createLongLink();
-	SimpleModel* leftCalfPart = _partsFactory->createLongLink();
-	SimpleModel* rightCalfPart = _partsFactory->createLongLink();
 
 	HierarchicalModel* chest = new HierarchicalModel(chestPart);
-	HierarchicalModel* leftCalf = new HierarchicalModel(leftCalfPart);
-	HierarchicalModel* rightCalf = new HierarchicalModel(rightCalfPart);
-	HierarchicalModel* leftKnee = new HierarchicalModel(leftKneePart);
-	HierarchicalModel* rightKnee = new HierarchicalModel(rightKneePart);
-	HierarchicalModel* leftTight = new HierarchicalModel(leftTightPart);
-	HierarchicalModel* rightTight = new HierarchicalModel(rightTightPart);
-	HierarchicalModel* leftPan = new HierarchicalModel(leftPanPart);
-	HierarchicalModel* rightPan = new HierarchicalModel(rightPanPart);
-	HierarchicalModel* leftForearm = new HierarchicalModel(leftForearmPart);
-	HierarchicalModel* rightForearm = new HierarchicalModel(rightForearmPart);
-	HierarchicalModel* leftHoop = new HierarchicalModel(leftHoopPart);
-	HierarchicalModel* rightHoop = new HierarchicalModel(rightHoopPart);
-	HierarchicalModel* leftArm = new HierarchicalModel(leftArmPart);
-	HierarchicalModel* rightArm = new HierarchicalModel(rightArmPart);
-	HierarchicalModel* leftElbow = new HierarchicalModel(leftElbowPart);
-	HierarchicalModel* rightElbow = new HierarchicalModel(rightElbowPart);
+	HierarchicalModel* leftArm = createArm();
+	HierarchicalModel* rightArm = createArm();
+	HierarchicalModel* head = createHead();
+	HierarchicalModel* leftLeg = createLeg();
+	HierarchicalModel* rightLeg = createLeg();
+
+	wrappersTrackerList.push_back(chest);
+
+	chest->addChild(*leftArm, chestToLeftHoop);
+	chest->addChild(*rightArm, chestToRightHoop);
+	chest->addChild(*head, rootToHead);
+	chest->addChild(*leftLeg, rootToLeftPan);
+	chest->addChild(*rightLeg, rootToRightPan);
+
+	return chest;
+}
+
+HierarchicalModel * RobotFactory::createHead()
+{
+	SimpleModel* mouthPart = _partsFactory->createMouth();
+	SimpleModel* headPart = _partsFactory->createHead();
+	SimpleModel* leftEyePart = _partsFactory->createEye();
+	SimpleModel* rightEyePart = _partsFactory->createEye();
+
 	HierarchicalModel* head = new HierarchicalModel(headPart);
 	HierarchicalModel* leftEye = new HierarchicalModel(leftEyePart);
 	HierarchicalModel* rightEye = new HierarchicalModel(rightEyePart);
 	HierarchicalModel* mouth = new HierarchicalModel(mouthPart);
-	HierarchicalModel* leftFeet = new HierarchicalModel(leftFeetPart);
-	HierarchicalModel* rightFeet = new HierarchicalModel(rightFeetPart);
-	wrappersTrackerList.push_back(chest);
-	wrappersTrackerList.push_back(leftCalf);
-	wrappersTrackerList.push_back(rightCalf);
-	wrappersTrackerList.push_back(leftKnee);
-	wrappersTrackerList.push_back(rightKnee);
-	wrappersTrackerList.push_back(leftTight);
-	wrappersTrackerList.push_back(rightTight);
-	wrappersTrackerList.push_back(leftPan);
-	wrappersTrackerList.push_back(rightPan);
-	wrappersTrackerList.push_back(leftForearm);
-	wrappersTrackerList.push_back(rightForearm);
-	wrappersTrackerList.push_back(leftHoop);
-	wrappersTrackerList.push_back(rightHoop);
-	wrappersTrackerList.push_back(leftArm);
-	wrappersTrackerList.push_back(rightArm);
-	wrappersTrackerList.push_back(leftElbow);
-	wrappersTrackerList.push_back(rightElbow);
+
 	wrappersTrackerList.push_back(head);
 	wrappersTrackerList.push_back(leftEye);
 	wrappersTrackerList.push_back(rightEye);
 	wrappersTrackerList.push_back(mouth);
-	wrappersTrackerList.push_back(leftFeet);
-	wrappersTrackerList.push_back(rightFeet);
 
-	leftElbow->addChild(*leftForearm, elbowToForearm);
-	rightElbow->addChild(*rightForearm, elbowToForearm);
-	leftArm->addChild(*leftElbow, armToElbow);
-	rightArm->addChild(*rightElbow, armToElbow);
-	leftHoop->addChild(*leftArm, hoopToArm);
-	rightHoop->addChild(*rightArm, hoopToArm);
-	chest->addChild(*leftHoop, chestToLeftHoop);
-	chest->addChild(*rightHoop, chestToRightHoop);
-	chest->addChild(*head, rootToHead);
-	chest->addChild(*leftPan, rootToLeftPan);
-	chest->addChild(*rightPan, rootToRightPan);
-	leftPan->addChild(*leftTight, hoopToArm);
-	rightPan->addChild(*rightTight, hoopToArm);
-	leftTight->addChild(*leftKnee, armToElbow);
-	rightTight->addChild(*rightKnee, armToElbow);
-	leftKnee->addChild(*leftCalf, hoopToArm);
-	rightKnee->addChild(*rightCalf, hoopToArm);
-	leftCalf->addChild(*leftFeet, armToElbow);
-	rightCalf->addChild(*rightFeet, armToElbow);
 	head->addChild(*leftEye, headToLeftEye);
 	head->addChild(*rightEye, headToRightEye);
 	head->addChild(*mouth, headToMouth);
 
-	return chest;
+	return head;
+}
+
+HierarchicalModel * RobotFactory::createArm()
+{
+	SimpleModel* armPart = _partsFactory->createLongLink();
+	SimpleModel* hoopPart = _partsFactory->createBearing();
+	SimpleModel* elbowPart = _partsFactory->createBearing();
+	SimpleModel* forearmPart = _partsFactory->createShortLink();
+
+	HierarchicalModel* forearm = new HierarchicalModel(forearmPart);
+	HierarchicalModel* hoop = new HierarchicalModel(hoopPart);
+	HierarchicalModel* arm = new HierarchicalModel(armPart);
+	HierarchicalModel* elbow = new HierarchicalModel(elbowPart);
+
+	wrappersTrackerList.push_back(forearm);
+	wrappersTrackerList.push_back(hoop);
+	wrappersTrackerList.push_back(arm);
+	wrappersTrackerList.push_back(elbow);
+
+	elbow->addChild(*forearm, elbowToForearm);
+	arm->addChild(*elbow, armToElbow);
+	hoop->addChild(*arm, hoopToArm);
+
+	return hoop;
+}
+
+HierarchicalModel* RobotFactory::createLeg()
+{
+	SimpleModel* feetPart = _partsFactory->createFeet();
+	SimpleModel* panPart = _partsFactory->createBearing();
+	SimpleModel* kneePart = _partsFactory->createBearing();
+	SimpleModel* tightPart = _partsFactory->createLongLink();
+	SimpleModel* calfPart = _partsFactory->createLongLink();
+
+	HierarchicalModel* calf = new HierarchicalModel(calfPart);
+	HierarchicalModel* knee = new HierarchicalModel(kneePart);
+	HierarchicalModel* tight = new HierarchicalModel(tightPart);
+	HierarchicalModel* pan = new HierarchicalModel(panPart);
+	HierarchicalModel* feet = new HierarchicalModel(feetPart);
+
+	wrappersTrackerList.push_back(calf);
+	wrappersTrackerList.push_back(knee);
+	wrappersTrackerList.push_back(tight);
+	wrappersTrackerList.push_back(pan);
+	wrappersTrackerList.push_back(feet);
+
+	pan->addChild(*tight, hoopToArm);
+	tight->addChild(*knee, armToElbow);
+	knee->addChild(*calf, hoopToArm);
+	calf->addChild(*feet, armToElbow);
+
+	return pan;
 }
 
 RobotFactory::~RobotFactory()

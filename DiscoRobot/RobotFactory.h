@@ -21,6 +21,9 @@ public:
 	RobotFactory();
 	RobotFactory(RobotPartsFactory& partsFactory);
 	HierarchicalModel* createRobot();
+	HierarchicalModel* createHead();
+	HierarchicalModel* createArm();
+	HierarchicalModel* createLeg();
 	~RobotFactory();
 };
 
