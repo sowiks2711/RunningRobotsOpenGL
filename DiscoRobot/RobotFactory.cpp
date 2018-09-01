@@ -5,6 +5,17 @@
 RobotFactory::RobotFactory()
 {
 	wrappersTrackerList.clear();
+	elbowToForearm = transformationBuilder.translate(0, -1.8, 0).build();
+	armToElbow = transformationBuilder.translate(0, -2.3, 0).build();
+	hoopToArm = transformationBuilder.translate(0, -2.3, 0).build();
+	chestToLeftHoop = transformationBuilder.translate(3, 2, 0).build();
+	chestToRightHoop = transformationBuilder.translate(-3, 2, 0).build();
+	rootToHead = transformationBuilder.translate(0, 4, 0).build();
+	rootToLeftPan = transformationBuilder.translate(-1, -3.3, 0).build();
+	rootToRightPan = transformationBuilder.translate(1, -3.3, 0).build();
+	headToLeftEye = transformationBuilder.translate(-1, 0.5, -1.3).build();
+	headToRightEye = transformationBuilder.translate(1, 0.5, -1.3).build();
+	headToMouth = transformationBuilder.translate(0, -0.5, -1.3).build();
 }
 
 RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
@@ -85,23 +96,15 @@ HierarchicalModel * RobotFactory::createRobot()
 	wrappersTrackerList.push_back(leftFeet);
 	wrappersTrackerList.push_back(rightFeet);
 
-	glm::mat4 elbowToForearm = transformationBuilder.translate(0, -1.8, 0).build();
 	leftElbow->addChild(*leftForearm, elbowToForearm);
 	rightElbow->addChild(*rightForearm, elbowToForearm);
-	glm::mat4 armToElbow = transformationBuilder.translate(0, -2.3, 0).build();
 	leftArm->addChild(*leftElbow, armToElbow);
 	rightArm->addChild(*rightElbow, armToElbow);
-	glm::mat4 hoopToArm = transformationBuilder.translate(0, -2.3, 0).build();
 	leftHoop->addChild(*leftArm, hoopToArm);
 	rightHoop->addChild(*rightArm, hoopToArm);
-	glm::mat4 chestToLeftHoop = transformationBuilder.translate(3, 2, 0).build();
 	chest->addChild(*leftHoop, chestToLeftHoop);
-	glm::mat4 chestToRightHoop = transformationBuilder.translate(-3, 2, 0).build();
 	chest->addChild(*rightHoop, chestToRightHoop);
-	glm::mat4 rootToHead = transformationBuilder.translate(0, 4, 0).build();
 	chest->addChild(*head, rootToHead);
-	glm::mat4 rootToLeftPan = transformationBuilder.translate(-1, -3.3, 0).build();
-	glm::mat4 rootToRightPan = transformationBuilder.translate(1, -3.3, 0).build();
 	chest->addChild(*leftPan, rootToLeftPan);
 	chest->addChild(*rightPan, rootToRightPan);
 	leftPan->addChild(*leftTight, hoopToArm);
@@ -112,9 +115,6 @@ HierarchicalModel * RobotFactory::createRobot()
 	rightKnee->addChild(*rightCalf, hoopToArm);
 	leftCalf->addChild(*leftFeet, armToElbow);
 	rightCalf->addChild(*rightFeet, armToElbow);
-	glm::mat4 headToLeftEye = transformationBuilder.translate(-1, 0.5, -1.3).build();
-	glm::mat4 headToRightEye = transformationBuilder.translate(1, 0.5, -1.3).build();
-	glm::mat4 headToMouth = transformationBuilder.translate(0, -0.5, -1.3).build();
 	head->addChild(*leftEye, headToLeftEye);
 	head->addChild(*rightEye, headToRightEye);
 	head->addChild(*mouth, headToMouth);
