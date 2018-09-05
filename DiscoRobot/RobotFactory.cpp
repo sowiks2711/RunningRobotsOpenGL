@@ -22,10 +22,12 @@ RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
 	_partsFactory = &partsFactory;
 }
 
-HierarchicalModel * RobotFactory::createRobot()
+RobotModel* RobotFactory::createRobot()
 {
 	SimpleModel* chestPart = _partsFactory->createChest();
 	RobotAnimator* animator = new RobotAnimator();
+
+	animatorsTrackerList.push_back(animator);
 
 	HierarchicalModel* chest = new HierarchicalModel(chestPart);
 	HierarchicalModel* leftArm = createArm(animator->leftHoopTransformation, animator->leftElbowTransformation);
@@ -42,7 +44,10 @@ HierarchicalModel * RobotFactory::createRobot()
 	chest->addChild(*leftLeg, rootToLeftPan);
 	chest->addChild(*rightLeg, rootToRightPan);
 
-	return chest;
+	RobotModel* robot = new RobotModel(chest, animator);
+	robotTrackerList.push_back(robot);
+
+	return robot;
 }
 
 HierarchicalModel * RobotFactory::createHead()

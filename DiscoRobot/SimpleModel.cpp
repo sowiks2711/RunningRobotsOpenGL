@@ -24,7 +24,7 @@ void SimpleModel::bindMaterialProperties(LightInteractionPropertiesHandles & han
 	_renderer->bindColourProperties(_materialProperties, handles);
 }
 
-glm::mat4 & SimpleModel::getModelCoordinates()
+glm::mat4 & SimpleModel::getCurrentTransformation()
 {
 	return _modelCoordinates;
 }

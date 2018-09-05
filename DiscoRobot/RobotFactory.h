@@ -2,6 +2,8 @@
 #include "RobotPartsFactory.h"
 #include "RobotAnimator.h"
 #include "HierarchicalModel.h"
+#include "RobotModel.h"
+
 class RobotFactory
 {
 	glm::mat4 elbowToForearm;
@@ -18,11 +20,12 @@ class RobotFactory
 	RobotPartsFactory* _partsFactory;
 	TransformationBuilder transformationBuilder;
 	std::vector<HierarchicalModel*> wrappersTrackerList;
+	std::vector<RobotModel*> robotTrackerList;
 	std::vector<RobotAnimator*> animatorsTrackerList;
 public:
 	RobotFactory();
 	RobotFactory(RobotPartsFactory& partsFactory);
-	HierarchicalModel* createRobot();
+	RobotModel* createRobot();
 	HierarchicalModel* createHead();
 	HierarchicalModel* createArm(glm::mat4* hoopAnimator, glm::mat4* elbowAnimator);
 	HierarchicalModel* createLeg(glm::mat4* panAnimator, glm::mat4* kneeAnimator);

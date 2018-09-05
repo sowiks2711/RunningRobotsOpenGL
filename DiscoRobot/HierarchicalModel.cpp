@@ -34,9 +34,14 @@ void HierarchicalModel::bindMaterialProperties(LightInteractionPropertiesHandles
 	this->_handles = &handles;
 }
 
-glm::mat4 HierarchicalModel::getCurrentTransformation()
+glm::mat4& HierarchicalModel::getCurrentTransformation()
 {
 	return _transformation;
+}
+
+const LightInteractionProperties& HierarchicalModel::getMaterialProperties()
+{
+	return _model->getMaterialProperties();
 }
 
 void HierarchicalModel::addChild(HierarchicalModel& child, glm::mat4 & relativeTransformation)

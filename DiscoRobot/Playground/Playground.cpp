@@ -68,7 +68,7 @@ int main( void )
 	scene.addLight(l2);
 	scene.addLight(l3);
 	scene.addLight(l4);
-	HierarchicalModel* robot = robotFactory.createRobot();
+	RobotModel* robot = robotFactory.createRobot();
 	scene.addModel(robot);
 	//rootanimation = transformationBuilder.scale(2).build();
 

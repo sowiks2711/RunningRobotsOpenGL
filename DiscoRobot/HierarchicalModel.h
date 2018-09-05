@@ -16,7 +16,8 @@ public:
 	HierarchicalModel(SimpleModel* model);
 	virtual void render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4 &P);
 	virtual void bindMaterialProperties(LightInteractionPropertiesHandles& handles);
-	glm::mat4 getCurrentTransformation();
+	virtual glm::mat4& getCurrentTransformation();
+	virtual const LightInteractionProperties& getMaterialProperties();
 	void addChild(HierarchicalModel& child, glm::mat4& relativeTransformation);
 	void setParent(HierarchicalModel* parent);
 	void setRelativeTransformation(glm::mat4& relativeTransformation);
