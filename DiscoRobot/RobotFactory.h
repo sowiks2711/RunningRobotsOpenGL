@@ -1,5 +1,6 @@
 #pragma once
 #include "RobotPartsFactory.h"
+#include "RobotAnimator.h"
 #include "HierarchicalModel.h"
 class RobotFactory
 {
@@ -17,13 +18,14 @@ class RobotFactory
 	RobotPartsFactory* _partsFactory;
 	TransformationBuilder transformationBuilder;
 	std::vector<HierarchicalModel*> wrappersTrackerList;
+	std::vector<RobotAnimator*> animatorsTrackerList;
 public:
 	RobotFactory();
 	RobotFactory(RobotPartsFactory& partsFactory);
 	HierarchicalModel* createRobot();
 	HierarchicalModel* createHead();
-	HierarchicalModel* createArm();
-	HierarchicalModel* createLeg();
+	HierarchicalModel* createArm(glm::mat4* hoopAnimator, glm::mat4* elbowAnimator);
+	HierarchicalModel* createLeg(glm::mat4* panAnimator, glm::mat4* kneeAnimator);
 	~RobotFactory();
 };
 
