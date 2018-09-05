@@ -7,8 +7,10 @@ SimpleModel::SimpleModel()
 }
 
 SimpleModel::SimpleModel(ModelRenderer * renderer, glm::mat4 & modelMatrix, LightInteractionProperties & materialProperties)
-	:AbstractModel(renderer, modelMatrix, materialProperties)
 {
+	this->_renderer = renderer;
+	this->_modelCoordinates = modelMatrix;
+	this->_materialProperties = materialProperties;
 }
 
 void SimpleModel::render(const GLuint mvId, const glm::mat4 & view, const GLuint pId, const glm::mat4 & P)
@@ -20,6 +22,16 @@ void SimpleModel::render(const GLuint mvId, const glm::mat4 & view, const GLuint
 void SimpleModel::bindMaterialProperties(LightInteractionPropertiesHandles & handles)
 {
 	_renderer->bindColourProperties(_materialProperties, handles);
+}
+
+glm::mat4 & SimpleModel::getModelCoordinates()
+{
+	return _modelCoordinates;
+}
+
+const LightInteractionProperties & SimpleModel::getMaterialProperties()
+{
+	return _materialProperties;
 }
 
 
