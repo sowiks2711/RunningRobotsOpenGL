@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AnimationStepMaker.cpp" />
     <ClCompile Include="HierarchicalModel.cpp" />
     <ClCompile Include="RobotAnimator.cpp" />
     <ClCompile Include="RobotFactory.cpp" />
@@ -143,6 +144,9 @@
     <ClCompile Include="SimpleModel.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimationStepMaker.h" />
+    <ClInclude Include="ArmRotators.h" />
+    <ClInclude Include="LegRotators.h" />
     <ClInclude Include="RobotAnimator.h" />
     <ClInclude Include="RobotFactory.h" />
     <ClInclude Include="RobotModel.h" />

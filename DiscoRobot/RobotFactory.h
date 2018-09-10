@@ -27,8 +27,8 @@ public:
 	RobotFactory(RobotPartsFactory& partsFactory);
 	RobotModel* createRobot();
 	HierarchicalModel* createHead();
-	HierarchicalModel* createArm(glm::mat4* hoopAnimator, glm::mat4* elbowAnimator);
-	HierarchicalModel* createLeg(glm::mat4* panAnimator, glm::mat4* kneeAnimator);
+	HierarchicalModel* createArm(ArmRotators& armRotators);
+	HierarchicalModel* createLeg(LegRotators& legRotators);
 	~RobotFactory();
 };
 

@@ -30,11 +30,11 @@ RobotModel* RobotFactory::createRobot()
 	animatorsTrackerList.push_back(animator);
 
 	HierarchicalModel* chest = new HierarchicalModel(chestPart);
-	HierarchicalModel* leftArm = createArm(animator->leftHoopTransformation, animator->leftElbowTransformation);
-	HierarchicalModel* rightArm = createArm(animator->rightHoopTransformation, animator->rightElbowTransformation);
+	HierarchicalModel* leftArm = createArm(animator->getLeftArmRotators());
+	HierarchicalModel* rightArm = createArm(animator->getRightArmRotators());
 	HierarchicalModel* head = createHead();
-	HierarchicalModel* leftLeg = createLeg(animator->leftPanTransformation, animator->leftKneeTransformation);
-	HierarchicalModel* rightLeg = createLeg(animator->rightPanTransformation, animator->rightKneeTransformation);
+	HierarchicalModel* leftLeg = createLeg(animator->getLeftLegRotators());
+	HierarchicalModel* rightLeg = createLeg(animator->getRightLegRotators());
 
 	wrappersTrackerList.push_back(chest);
 
@@ -52,7 +52,6 @@ RobotModel* RobotFactory::createRobot()
 
 HierarchicalModel * RobotFactory::createHead()
 {
-	RobotAnimator* robotAnimator = new RobotAnimator();
 	SimpleModel* mouthPart = _partsFactory->createMouth();
 	SimpleModel* headPart = _partsFactory->createHead();
 	SimpleModel* leftEyePart = _partsFactory->createEye();
@@ -75,7 +74,7 @@ HierarchicalModel * RobotFactory::createHead()
 	return head;
 }
 
-HierarchicalModel * RobotFactory::createArm(glm::mat4* hoopAnimator, glm::mat4* elbowAnimator)
+HierarchicalModel * RobotFactory::createArm(ArmRotators& armRotators)
 {
 	SimpleModel* armPart = _partsFactory->createLongLink();
 	SimpleModel* hoopPart = _partsFactory->createBearing();
@@ -96,12 +95,12 @@ HierarchicalModel * RobotFactory::createArm(glm::mat4* hoopAnimator, glm::mat4* 
 	arm->addChild(*elbow, armToElbow);
 	hoop->addChild(*arm, hoopToArm);
 
-	hoop->setAnimationMatrix(*hoopAnimator);
-	elbow->setAnimationMatrix(*elbowAnimator);
+	hoop->setAnimationMatrix(*armRotators.hoopRotation);
+	elbow->setAnimationMatrix(*armRotators.elbowRotation);
 	return hoop;
 }
 
-HierarchicalModel* RobotFactory::createLeg(glm::mat4* panAnimator, glm::mat4* kneeAnimator)
+HierarchicalModel* RobotFactory::createLeg(LegRotators& legRotators)
 {
 	SimpleModel* feetPart = _partsFactory->createFeet();
 	SimpleModel* panPart = _partsFactory->createBearing();
@@ -126,8 +125,8 @@ HierarchicalModel* RobotFactory::createLeg(glm::mat4* panAnimator, glm::mat4* kn
 	knee->addChild(*calf, hoopToArm);
 	calf->addChild(*feet, armToElbow);
 
-	pan->setAnimationMatrix(*panAnimator);
-	knee->setAnimationMatrix(*kneeAnimator);
+	pan->setAnimationMatrix(*legRotators.panRotation);
+	knee->setAnimationMatrix(*legRotators.kneeRotation);
 
 	return pan;
 }
