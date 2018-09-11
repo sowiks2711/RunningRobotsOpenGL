@@ -24,6 +24,18 @@ TransformationBuilder& TransformationBuilder::rotate(float degrees, const glm::v
 	_transformation = Transform::rotate(angle, rotationAxis) * _transformation;
 	return *this;
 }
+TransformationBuilder & TransformationBuilder::rotateOverX(float degrees)
+{
+	return rotate(degrees, glm::vec3(1, 0, 0));
+}
+TransformationBuilder & TransformationBuilder::rotateOverY(float degrees)
+{
+	return rotate(degrees, glm::vec3(0, 1, 0));
+}
+TransformationBuilder & TransformationBuilder::rotateOverZ(float degrees)
+{
+	return rotate(degrees, glm::vec3(0, 0, 1));
+}
 TransformationBuilder& TransformationBuilder::perspective(float FoV, float aspect, float zNear, float zFar)
 {
 	float angle = FoV *  M_PI/180;

@@ -1,7 +1,6 @@
 #pragma once
 #include <glm\glm.hpp>
 #include "Playground\TransformationBuilder.h"
-#include "AnimationStepMaker.h"
 #include "ArmRotators.h"
 #include "LegRotators.h"
 #include "RobotAnimation.h"

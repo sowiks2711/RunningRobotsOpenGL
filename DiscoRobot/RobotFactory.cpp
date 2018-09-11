@@ -16,18 +16,18 @@ RobotFactory::RobotFactory()
 	headToRightEye = transformationBuilder.translate(1, 0.5, -1.3).build();
 	headToMouth = transformationBuilder.translate(0, -0.5, -1.3).build();
 	forearmToLeftFingerBase = transformationBuilder.translate(0.3, -1.5, 0)
-												   .rotate(20, glm::vec3(0,0,1))
+												   .rotateOverZ(20)
 												   .build();
 	forearmToRightFingerBase = transformationBuilder.translate(-0.3, -1.5, 0)
-												    .rotate(-20, glm::vec3(0,0,1))
+												    .rotateOverZ(-20)
 												    .build();
 	leftFingerBaseToLeftFingerEnd = transformationBuilder
 		.translate(0.2, -1., 0)
-		.rotate(-35, glm::vec3(0, 0, 1))
+		.rotateOverZ(-35)
 		.build();
 	rightFingerBaseToRightFingerEnd = transformationBuilder
 		.translate(-0.2, -1., 0)
-		.rotate(35, glm::vec3(0, 0, 1))
+		.rotateOverZ(35)
 		.build();
 }
 

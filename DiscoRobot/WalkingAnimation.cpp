@@ -102,17 +102,17 @@ WalkingAnimation::WalkingAnimation(ArmRotators & leftArmRotators, ArmRotators & 
 	_currentStep = 0;
 	_armsAngle = 45;
 	builder = new TransformationBuilder();
-	bendingRotationStep = builder->rotate(bendAngle / _prepareArmsSteps, glm::vec3(1, 0, 0)).build();
-	straitaningRotationStep = builder->rotate(-bendAngle / _prepareArmsSteps, glm::vec3(1, 0, 0)).build();
-	forwardSwingingRotationStep = builder->rotate(4 * swingAngle / _walkCycleSteps, glm::vec3(1, 0, 0)).build();
-	backwardSwingingRotationStep = builder->rotate(-4 * swingAngle / _walkCycleSteps, glm::vec3(1, 0, 0)).build();
-	backwardSwingingForearmRotationStep = builder->rotate(- swingAngle / _walkCycleSteps, glm::vec3(1, 0, 0)).build(); 
-	forwardSwingingForearmRotationStep = builder->rotate(swingAngle / _walkCycleSteps, glm::vec3(1, 0, 0)).build(); 
-	forwardForearmRotationStep = builder->rotate(180.0 / _prepareArmsSteps, glm::vec3(0, 1, 0)).build();
-	backwardForearmRotationStep = builder->rotate(180.0 / _prepareArmsSteps, glm::vec3(0, 1, 0)).build();
-	forwardHookBendStep = builder->rotate(-40.0 / _walkCycleSteps, glm::vec3(0, 0, 1)).build();
-	backwardHookBendStep = builder->rotate(40.0 / _walkCycleSteps, glm::vec3(0, 0, 1)).build();
-	rootTransformationStep = builder->rotate(360.0 / _walkCycleSteps, glm::vec3(0, 1, 0)).translate(0, 0, -0.1).build();
+	bendingRotationStep = builder->rotateOverX(bendAngle / _prepareArmsSteps).build();
+	straitaningRotationStep = builder->rotateOverX(-bendAngle / _prepareArmsSteps).build();
+	forwardSwingingRotationStep = builder->rotateOverX(4 * swingAngle / _walkCycleSteps).build();
+	backwardSwingingRotationStep = builder->rotateOverX(-4 * swingAngle / _walkCycleSteps).build();
+	backwardSwingingForearmRotationStep = builder->rotateOverX(- swingAngle / _walkCycleSteps).build(); 
+	forwardSwingingForearmRotationStep = builder->rotateOverX(swingAngle / _walkCycleSteps).build(); 
+	forwardForearmRotationStep = builder->rotateOverY(180.0 / _prepareArmsSteps).build();
+	backwardForearmRotationStep = builder->rotateOverY(180.0 / _prepareArmsSteps).build();
+	forwardHookBendStep = builder->rotateOverZ(-40.0 / _walkCycleSteps).build();
+	backwardHookBendStep = builder->rotateOverZ(40.0 / _walkCycleSteps).build();
+	rootTransformationStep = builder->rotateOverY(360.0 / _walkCycleSteps).translate(0, 0, -0.1).build();
 
 }
 

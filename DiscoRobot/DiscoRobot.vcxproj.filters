@@ -114,9 +114,6 @@
     <ClCompile Include="RobotModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationStepMaker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="RobotAnimation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -213,9 +210,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RobotModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationStepMaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ArmRotators.h">

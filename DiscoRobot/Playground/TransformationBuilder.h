@@ -14,6 +14,9 @@ public:
 	glm::mat4 build();
 	void reset();
 	TransformationBuilder& rotate(float degrees, const glm::vec3 rotationAxis);
+	TransformationBuilder& rotateOverX(float degrees);
+	TransformationBuilder& rotateOverY(float degrees);
+	TransformationBuilder& rotateOverZ(float degrees);
 	TransformationBuilder& perspective(float FoV, float aspect, float zNear, float zFar);
 	TransformationBuilder& translate(float x, float y, float z);
 	TransformationBuilder& scale(float sx, float sy, float sz);
