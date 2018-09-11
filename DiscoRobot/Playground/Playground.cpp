@@ -41,7 +41,7 @@ int main( void )
 	glm::mat4 viewMatrix, projection;
 	
 	viewMatrix = Transform::lookAt(
-		vec3(0, 0, -15),
+		vec3(20, 10, -15),
 		vec3(0, 0, 0),
 		vec3(0, 1, 0)
 	);

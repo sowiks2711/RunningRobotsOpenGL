@@ -17,6 +17,7 @@ public:
 	SimpleModel* createBearing();
 	SimpleModel* createLongLink();
 	SimpleModel* createShortLink();
+	SimpleModel* createFinger();
 	SimpleModel* createFeet();
 	SimpleModel* createEye();
 	SimpleModel* createMouth();

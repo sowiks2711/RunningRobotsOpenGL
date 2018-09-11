@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="RobotAnimation.cpp" />
     <ClCompile Include="AnimationStepMaker.cpp" />
     <ClCompile Include="HierarchicalModel.cpp" />
     <ClCompile Include="RobotAnimator.cpp" />
@@ -142,8 +143,10 @@
     <ClCompile Include="Playground\View.cpp" />
     <ClCompile Include="ShaderLoader\Shader.cpp" />
     <ClCompile Include="SimpleModel.cpp" />
+    <ClCompile Include="WalkingAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RobotAnimation.h" />
     <ClInclude Include="AnimationStepMaker.h" />
     <ClInclude Include="ArmRotators.h" />
     <ClInclude Include="LegRotators.h" />
@@ -177,6 +180,7 @@
     <ClInclude Include="ShaderLoader\Shader.hpp" />
     <ClInclude Include="SimpleModel.h" />
     <ClInclude Include="HierarchicalModel.h" />
+    <ClInclude Include="WalkingAnimation.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -17,6 +17,10 @@ class RobotFactory
 	glm::mat4 headToLeftEye;
 	glm::mat4 headToRightEye;
 	glm::mat4 headToMouth;
+	glm::mat4 forearmToLeftFingerBase;
+	glm::mat4 forearmToRightFingerBase;
+	glm::mat4 leftFingerBaseToLeftFingerEnd;
+	glm::mat4 rightFingerBaseToRightFingerEnd;
 	RobotPartsFactory* _partsFactory;
 	TransformationBuilder transformationBuilder;
 	std::vector<HierarchicalModel*> wrappersTrackerList;

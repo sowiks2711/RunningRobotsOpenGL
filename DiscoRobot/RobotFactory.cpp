@@ -15,6 +15,20 @@ RobotFactory::RobotFactory()
 	headToLeftEye = transformationBuilder.translate(-1, 0.5, -1.3).build();
 	headToRightEye = transformationBuilder.translate(1, 0.5, -1.3).build();
 	headToMouth = transformationBuilder.translate(0, -0.5, -1.3).build();
+	forearmToLeftFingerBase = transformationBuilder.translate(0.3, -1.5, 0)
+												   .rotate(20, glm::vec3(0,0,1))
+												   .build();
+	forearmToRightFingerBase = transformationBuilder.translate(-0.3, -1.5, 0)
+												    .rotate(-20, glm::vec3(0,0,1))
+												    .build();
+	leftFingerBaseToLeftFingerEnd = transformationBuilder
+		.translate(0.2, -1., 0)
+		.rotate(-35, glm::vec3(0, 0, 1))
+		.build();
+	rightFingerBaseToRightFingerEnd = transformationBuilder
+		.translate(-0.2, -1., 0)
+		.rotate(35, glm::vec3(0, 0, 1))
+		.build();
 }
 
 RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
@@ -43,6 +57,8 @@ RobotModel* RobotFactory::createRobot()
 	chest->addChild(*head, rootToHead);
 	chest->addChild(*leftLeg, rootToLeftPan);
 	chest->addChild(*rightLeg, rootToRightPan);
+
+	chest->setAnimationMatrix(animator->getRootTransformation());
 
 	RobotModel* robot = new RobotModel(chest, animator);
 	robotTrackerList.push_back(robot);
@@ -80,23 +96,42 @@ HierarchicalModel * RobotFactory::createArm(ArmRotators& armRotators)
 	SimpleModel* hoopPart = _partsFactory->createBearing();
 	SimpleModel* elbowPart = _partsFactory->createBearing();
 	SimpleModel* forearmPart = _partsFactory->createShortLink();
+	SimpleModel* leftFingerBasePart = _partsFactory->createFinger();
+	SimpleModel* rightFingerBasePart = _partsFactory->createFinger();
+	SimpleModel* leftFingerEndPart = _partsFactory->createFinger();
+	SimpleModel* rightFingerEndPart = _partsFactory->createFinger();
 
 	HierarchicalModel* forearm = new HierarchicalModel(forearmPart);
 	HierarchicalModel* hoop = new HierarchicalModel(hoopPart);
 	HierarchicalModel* arm = new HierarchicalModel(armPart);
 	HierarchicalModel* elbow = new HierarchicalModel(elbowPart);
+	HierarchicalModel* leftFingerBase = new HierarchicalModel(leftFingerBasePart);
+	HierarchicalModel* rightFingerBase = new HierarchicalModel(rightFingerBasePart);
+	HierarchicalModel* leftFingerEnd = new HierarchicalModel(leftFingerBasePart);
+	HierarchicalModel* rightFingerEnd = new HierarchicalModel(rightFingerBasePart);
 
 	wrappersTrackerList.push_back(forearm);
 	wrappersTrackerList.push_back(hoop);
 	wrappersTrackerList.push_back(arm);
 	wrappersTrackerList.push_back(elbow);
+	wrappersTrackerList.push_back(leftFingerBase);
+	wrappersTrackerList.push_back(rightFingerBase);
+	wrappersTrackerList.push_back(leftFingerEnd);
+	wrappersTrackerList.push_back(rightFingerEnd);
 
 	elbow->addChild(*forearm, elbowToForearm);
 	arm->addChild(*elbow, armToElbow);
 	hoop->addChild(*arm, hoopToArm);
+	forearm->addChild(*leftFingerBase, forearmToLeftFingerBase);
+	forearm->addChild(*rightFingerBase, forearmToRightFingerBase);
+	leftFingerBase->addChild(*leftFingerEnd, leftFingerBaseToLeftFingerEnd);
+	rightFingerBase->addChild(*rightFingerEnd, rightFingerBaseToRightFingerEnd);
 
 	hoop->setAnimationMatrix(*armRotators.hoopRotation);
 	elbow->setAnimationMatrix(*armRotators.elbowRotation);
+	rightFingerBase->setAnimationMatrix(*armRotators.rightFingerRotator);
+	leftFingerBase->setAnimationMatrix(*armRotators.leftFingerRotator);
+	forearm->setAnimationMatrix(*armRotators.forearmRotation);
 	return hoop;
 }
 
@@ -135,4 +170,9 @@ RobotFactory::~RobotFactory()
 {
 	for (HierarchicalModel* model : wrappersTrackerList)
 		delete model;
+	for (RobotAnimator* animator : animatorsTrackerList)
+		delete animator;
+	for (RobotModel* robot : robotTrackerList)
+		delete robot;
+	
 }

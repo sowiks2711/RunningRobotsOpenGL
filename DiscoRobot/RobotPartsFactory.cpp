@@ -73,6 +73,18 @@ SimpleModel * RobotPartsFactory::createShortLink()
 		.build();
 }
 
+SimpleModel * RobotPartsFactory::createFinger()
+{
+	return &cubeBuilder->setDiffuse(0, 0.61, 0)
+		.setEmission(0.1, 0, 0)
+		.setShininess(400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(
+			transformationBuilder.scale(0.3,1.0,0.3).build()
+		)
+		.build();
+}
+
 SimpleModel * RobotPartsFactory::createFeet()
 {
 	return &cubeBuilder->setDiffuse(0, 0.61, 0)
