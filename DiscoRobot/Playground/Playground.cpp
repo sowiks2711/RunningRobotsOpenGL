@@ -27,6 +27,7 @@
 #include "..\HierarchicalModel.h"
 #include "..\RobotPartsFactory.h"
 #include "..\RobotFactory.h"
+#include "..\ViewAnimator.h"
 
 using namespace glm;
 
@@ -39,13 +40,14 @@ int main( void )
 	RobotFactory robotFactory = RobotFactory(partsFactory);
 
 	glm::mat4 viewMatrix, projection;
-	
+	glm::vec3 eye = vec3(0, 10, -45);
+	glm::vec3 up = vec3(0, 1, 0);
+
 	viewMatrix = Transform::lookAt(
-		vec3(20, 10, -15),
+		eye,
 		vec3(0, 0, 0),
-		vec3(0, 1, 0)
+		up
 	);
-	View view = View(viewMatrix);
 	projection = transformationBuilder
 		.perspective(
 			90,
@@ -62,27 +64,31 @@ int main( void )
 	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };
 	LightProperties l4 = { glm::vec4(-1,-1,1,1), glm::vec4(1,1,0,1) };
 
+	glm::mat4 secondaryActorTransformation = glm::mat4(1);
+	RobotModel* robot1 = robotFactory.createRobot(secondaryActorTransformation);
+	glm::mat4 mainActorTransformation = transformationBuilder.translate(3, 0, 10).build();
+	RobotModel* robot2 = robotFactory.createRobot(mainActorTransformation );
+	HierarchicalModel* floor = robotFactory.createFloor();
+
+	ViewAnimator viewAnimator = ViewAnimator(viewMatrix, eye, up, secondaryActorTransformation);
+	View view = View(viewMatrix);
 
 	Scene scene = Scene(view, projector, sceneRenderer);
 	scene.addLight(l1);
 	scene.addLight(l2);
 	scene.addLight(l3);
 	scene.addLight(l4);
-	RobotModel* robot = robotFactory.createRobot();
-	scene.addModel(robot);
-	//rootanimation = transformationBuilder.scale(2).build();
+	
+	scene.addModel(robot1);
+	scene.addModel(robot2);
+	scene.addModel(floor);
 
-	int i = 1;
-	int step = 1;
 	do {
 
 		scene.clearScene();
 		scene.render();
 		screen.swapBuffers();
-		//animation = animation * transformationBuilder.rotate(0.5, glm::vec3(1, 1, 1)).build();
-		//rootanimation = rootanimation * transformationBuilder.translate(0, 0.001 * i,0).build();
-		if ((i+80) % 160 == 0) step = -step;
-		i += step;
+		viewAnimator.makeNextStep();
 
 	} // Check if the ESC key was pressed or the window was closed
 	while( screen.escapeHasNotBeenPressed());

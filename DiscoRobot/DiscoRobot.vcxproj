@@ -142,6 +142,7 @@
     <ClCompile Include="Playground\View.cpp" />
     <ClCompile Include="ShaderLoader\Shader.cpp" />
     <ClCompile Include="SimpleModel.cpp" />
+    <ClCompile Include="ViewAnimator.cpp" />
     <ClCompile Include="WalkingAnimation.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +179,7 @@
     <ClInclude Include="ShaderLoader\Shader.hpp" />
     <ClInclude Include="SimpleModel.h" />
     <ClInclude Include="HierarchicalModel.h" />
+    <ClInclude Include="ViewAnimator.h" />
     <ClInclude Include="WalkingAnimation.h" />
   </ItemGroup>
   <ItemGroup>

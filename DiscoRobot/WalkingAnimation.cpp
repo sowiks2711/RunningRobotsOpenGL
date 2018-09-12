@@ -112,7 +112,7 @@ WalkingAnimation::WalkingAnimation(ArmRotators & leftArmRotators, ArmRotators & 
 	backwardForearmRotationStep = builder->rotateOverY(180.0 / _prepareArmsSteps).build();
 	forwardHookBendStep = builder->rotateOverZ(-40.0 / _walkCycleSteps).build();
 	backwardHookBendStep = builder->rotateOverZ(40.0 / _walkCycleSteps).build();
-	rootTransformationStep = builder->rotateOverY(360.0 / _walkCycleSteps).translate(0, 0, -0.1).build();
+	rootTransformationStep = builder->rotateOverY(360.0 / _walkCycleSteps).translate(0, 0, -0.2).build();
 
 }
 

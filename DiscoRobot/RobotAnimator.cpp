@@ -2,28 +2,40 @@
 
 
 
-ArmRotators & RobotAnimator::getLeftArmRotators()
+ArmRotators& RobotAnimator::getLeftArmRotators()
 {
 	return leftArmRotators;
 }
-ArmRotators & RobotAnimator::getRightArmRotators()
+ArmRotators& RobotAnimator::getRightArmRotators()
 {
 	return rightArmRotators;
 }
 
-LegRotators & RobotAnimator::getLeftLegRotators()
+LegRotators& RobotAnimator::getLeftLegRotators()
 {
 	return leftLegRotators;
 }
 
-LegRotators & RobotAnimator::getRightLegRotators()
+LegRotators& RobotAnimator::getRightLegRotators()
 {
 	return rightLegRotators;
 }
 
-glm::mat4 & RobotAnimator::getRootTransformation()
+glm::mat4& RobotAnimator::getRootTransformation()
 {
 	return *rootTransformation;
+}
+
+void RobotAnimator::setInitialTransformation(glm::mat4& transformation)
+{
+	rootTransformation = &transformation;
+}
+
+void RobotAnimator::addWalkingAnimation()
+{
+	animations.push_back(
+		new WalkingAnimation(leftArmRotators, rightArmRotators, leftLegRotators, rightLegRotators, rootTransformation)
+	);
 }
 
 RobotAnimator::RobotAnimator()
@@ -44,12 +56,8 @@ RobotAnimator::RobotAnimator()
 	leftLegRotators.kneeRotation = new glm::mat4(1);
 	rightLegRotators.panRotation = new glm::mat4(1);
 	rightLegRotators.kneeRotation = new glm::mat4(1);
-	rootTransformation = new glm::mat4(1);
 
 	_transformationBuilder = new TransformationBuilder();
-	animations.push_back(
-		new WalkingAnimation(leftArmRotators, rightArmRotators, leftLegRotators, rightLegRotators, rootTransformation)
-	);
 }
 
 void RobotAnimator::makeAnimationStep()
@@ -76,7 +84,6 @@ RobotAnimator::~RobotAnimator()
 	delete leftLegRotators.kneeRotation;
 	delete rightLegRotators.panRotation;
 	delete rightLegRotators.kneeRotation;
-	delete rootTransformation;
 	for (RobotAnimation* animation : animations)
 		delete animation;
 }

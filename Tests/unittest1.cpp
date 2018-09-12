@@ -31,7 +31,7 @@ namespace Tests
 		}
 	public:
 		
-		TEST_METHOD(LookAt)
+		TEST_METHOD(LookAt1)
 		{
 			glm::mat4 expected = glm::lookAt(
 				glm::vec3(0, 0, -1),
@@ -46,6 +46,20 @@ namespace Tests
 			AssertMat4Equal(expected, actual);
 		}
 
+		TEST_METHOD(LookAt2)
+		{
+			glm::mat4 expected = glm::lookAt(
+				glm::vec3(10, 0, -1),
+				glm::vec3(0, 20, 0),
+				glm::vec3(0, 1, 0)
+			);
+			glm::mat4 actual = Transform::lookAt(
+				glm::vec3(10, 0, -1),
+				glm::vec3(0, 20, 0),
+				glm::vec3(0, 1, 0)
+			);
+			AssertMat4Equal(expected, actual);
+		}
 		TEST_METHOD(Perspective)
 		{
 			float fov = (float)(M_PI/2);

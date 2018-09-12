@@ -24,6 +24,8 @@ public:
 	LegRotators& getLeftLegRotators();
 	LegRotators& getRightLegRotators();
 	glm::mat4& getRootTransformation();
+	void setInitialTransformation(glm::mat4& transformation);
+	void addWalkingAnimation();
 	RobotAnimator();
 	void makeAnimationStep();
 	~RobotAnimator();

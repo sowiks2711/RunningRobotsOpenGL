@@ -23,7 +23,7 @@ glm::mat4 Transform::lookAt(const glm::vec3 & eye, const glm::vec3 & center, con
 		u.y, v.y, w.y, 
 		u.z, v.z, w.z
 	);
-	vec3 tr = rot * (-eyeCenterDiff);
+	vec3 tr = rot * (-eye);
 
 	return glm::mat4(
 		rot[0][0], rot[0][1], rot[0][2], 0,
@@ -90,5 +90,29 @@ glm::mat4 Transform::translate(const float & tx, const float & ty, const float &
 		0, 0, 1, 0,
 		tx, ty, tz, 1
 	);
+}
+
+void Transform::rotateCameraNormalsOverCenterLeft(float degrees, glm::vec3 & eye, glm::vec3 & up)
+{
+	mat3 rotM = rotate(degrees, normalize(up));
+	eye = rotM * eye;
+}
+
+void Transform::rotateCameraNormalsOverCenterUp(float degrees, glm::vec3 & eye, glm::vec3 & up)
+{
+	vec3 axisUp = glm::cross(-eye, up);
+	axisUp = normalize(axisUp);
+	mat3 rotM = rotate(-degrees, axisUp);
+	vec3 translation = -eye;
+	vec3 rotTrans = rotM * translation;
+	mat4 upM = mat4(rotM[0][0], rotM[0][1], rotM[0][2], 0,
+		rotM[1][0], rotM[1][1], rotM[1][2], 0,
+		rotM[2][0], rotM[2][1], rotM[2][2], 0,
+		rotTrans.x, rotTrans.y, rotTrans.z, 1);
+	vec4 homoUp = vec4(up, 1);
+	homoUp = upM * homoUp;
+	eye = rotM * eye;
+	up = vec3(homoUp[0], homoUp[1], homoUp[2]) + eye;
+	up = normalize(up);
 }
 

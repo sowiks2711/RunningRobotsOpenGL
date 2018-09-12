@@ -10,6 +10,8 @@ class RobotPartsFactory
 	TransformationBuilder transformationBuilder;
 	CubeModelBuilder* cubeBuilder;
 	SfereModelBuilder* sfereBuilder;
+	ModelBuilder* prepareGreenCubicPart();
+	ModelBuilder* prepareRedBearingPart();
 public:
 	RobotPartsFactory();
 	SimpleModel* createChest();
@@ -21,6 +23,7 @@ public:
 	SimpleModel* createFeet();
 	SimpleModel* createEye();
 	SimpleModel* createMouth();
+	SimpleModel* createFloorPart();
 	~RobotPartsFactory();
 };
 

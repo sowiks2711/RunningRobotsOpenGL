@@ -11,6 +11,7 @@ class RobotModel :
 public:
 	RobotModel();
 	RobotModel(HierarchicalModel* modelRoot, RobotAnimator* animator);
+	void setStartingTranslation(glm::mat4& translation);
 	virtual void render(const GLuint mvId, const glm::mat4& view, const GLuint pId, const glm::mat4 &P);
 	virtual void bindMaterialProperties(LightInteractionPropertiesHandles& handles);
 	virtual glm::mat4& getCurrentTransformation();

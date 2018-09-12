@@ -21,6 +21,8 @@ class RobotFactory
 	glm::mat4 forearmToRightFingerBase;
 	glm::mat4 leftFingerBaseToLeftFingerEnd;
 	glm::mat4 rightFingerBaseToRightFingerEnd;
+	glm::mat4 floorPartToNextColumn;
+	glm::mat4 floorPartToNextRow;
 	RobotPartsFactory* _partsFactory;
 	TransformationBuilder transformationBuilder;
 	std::vector<HierarchicalModel*> wrappersTrackerList;
@@ -30,9 +32,11 @@ public:
 	RobotFactory();
 	RobotFactory(RobotPartsFactory& partsFactory);
 	RobotModel* createRobot();
+	RobotModel* createRobot(glm::mat4& initialTransformation);
 	HierarchicalModel* createHead();
 	HierarchicalModel* createArm(ArmRotators& armRotators);
 	HierarchicalModel* createLeg(LegRotators& legRotators);
+	HierarchicalModel* createFloor();
 	~RobotFactory();
 };
 

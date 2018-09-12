@@ -51,7 +51,7 @@ ScreenRenderer::ScreenRenderer(int w, int h)
 	// Accept fragment if it closer to the camera than the former one
 	glDepthFunc(GL_LESS);
 	// Dark blue background
-	glClearColor(0.0f, 0.0f, 0.4f, 0.0f);
+	glClearColor(0x34/255., 0x0E/255., 0x66/255., 0.0f);
 }
 
 ScreenRenderer & ScreenRenderer::operator=(const ScreenRenderer & other)

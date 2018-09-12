@@ -13,5 +13,7 @@ public:
 	static glm::mat4 rotate(const float angle, const glm::vec3& axis);
 	static glm::mat4 scale(const float& sx, const float& sy, const float& sz);
 	static glm::mat4 translate(const float& tx, const float& ty, const float& tz);
+	static void rotateCameraNormalsOverCenterLeft(float degrees, glm::vec3& eye, glm::vec3& up);
+	static void rotateCameraNormalsOverCenterUp(float degrees, glm::vec3& eye, glm::vec3& up);
 };
 

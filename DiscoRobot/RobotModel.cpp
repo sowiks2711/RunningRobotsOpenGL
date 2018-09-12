@@ -12,6 +12,11 @@ RobotModel::RobotModel(HierarchicalModel* modelRoot, RobotAnimator* animator)
 	_animator = animator;
 }
 
+void RobotModel::setStartingTranslation(glm::mat4& translation)
+{
+	_modelRoot->setAnimationMatrix(translation);
+}
+
 void RobotModel::render(const GLuint mvId, const glm::mat4 & view, const GLuint pId, const glm::mat4 & P)
 {
 	_modelRoot->render(mvId, view, pId, P);

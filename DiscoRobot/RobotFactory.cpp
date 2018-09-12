@@ -29,6 +29,12 @@ RobotFactory::RobotFactory()
 		.translate(-0.2, -1., 0)
 		.rotateOverZ(35)
 		.build();
+	floorPartToNextColumn = transformationBuilder
+		.translate(20, 0, 0)
+		.build();
+	floorPartToNextRow = transformationBuilder
+		.translate(0, 0, 20)
+		.build();
 }
 
 RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
@@ -36,7 +42,12 @@ RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
 	_partsFactory = &partsFactory;
 }
 
-RobotModel* RobotFactory::createRobot()
+RobotModel* RobotFactory::createRobot() 
+{
+	glm::mat4 identity = glm::mat4(1);
+	return createRobot(identity);
+}
+RobotModel* RobotFactory::createRobot(glm::mat4& initialTransformation)
 {
 	SimpleModel* chestPart = _partsFactory->createChest();
 	RobotAnimator* animator = new RobotAnimator();
@@ -57,8 +68,11 @@ RobotModel* RobotFactory::createRobot()
 	chest->addChild(*head, rootToHead);
 	chest->addChild(*leftLeg, rootToLeftPan);
 	chest->addChild(*rightLeg, rootToRightPan);
+	animator->setInitialTransformation(initialTransformation);
 
 	chest->setAnimationMatrix(animator->getRootTransformation());
+
+	animator->addWalkingAnimation();
 
 	RobotModel* robot = new RobotModel(chest, animator);
 	robotTrackerList.push_back(robot);
@@ -164,6 +178,39 @@ HierarchicalModel* RobotFactory::createLeg(LegRotators& legRotators)
 	knee->setAnimationMatrix(*legRotators.kneeRotation);
 
 	return pan;
+}
+
+HierarchicalModel * RobotFactory::createFloor()
+{
+	SimpleModel* rootPart = _partsFactory->createFloorPart();
+	HierarchicalModel* root = new HierarchicalModel(rootPart);
+	HierarchicalModel* rowBeginning = root;
+	HierarchicalModel* currentElement = root;
+	SimpleModel* nextPart;
+	HierarchicalModel* nextElement;
+	for (int i = 0; i < 10; i++) 
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			nextPart = _partsFactory->createFloorPart();
+			nextElement = new HierarchicalModel(nextPart);
+			wrappersTrackerList.push_back(nextElement);
+			currentElement->addChild(*nextElement, floorPartToNextColumn );
+
+			currentElement = nextElement;
+		}
+		nextPart = _partsFactory->createFloorPart();
+		HierarchicalModel* nextRowElement = new HierarchicalModel(nextPart);
+		wrappersTrackerList.push_back(nextRowElement);
+		rowBeginning->addChild(*nextRowElement, floorPartToNextRow );
+		rowBeginning = nextRowElement;
+
+		currentElement = nextRowElement;
+	}
+	glm::mat4 floorTranslation = transformationBuilder.translate(-50, -13.5, -50).build();
+	root->setRelativeTransformation(floorTranslation);
+	wrappersTrackerList.push_back(root);
+	return root;
 }
 
 RobotFactory::~RobotFactory()

@@ -2,7 +2,7 @@
 #include <glm/glm.hpp>
 class View
 {
-	glm::mat4 _view;
+	glm::mat4* _view;
 public:
 	View();
 	View(glm::mat4 &view);
