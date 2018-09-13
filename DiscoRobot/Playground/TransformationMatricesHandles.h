@@ -7,5 +7,6 @@ public:
 	GLuint viewId;
 	GLuint modelId;
 	GLuint projectionId;
+	GLuint spotlightRotationId;
 };
 

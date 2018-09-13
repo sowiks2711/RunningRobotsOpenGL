@@ -39,9 +39,10 @@ int main( void )
 	RobotPartsFactory partsFactory = RobotPartsFactory();
 	RobotFactory robotFactory = RobotFactory(partsFactory);
 
-	glm::mat4 viewMatrix, projection;
+	glm::mat4 viewMatrix, projection, spotlightRotation;
 	glm::vec3 eye = vec3(0, 10, -45);
 	glm::vec3 up = vec3(0, 1, 0);
+	spotlightRotation = transformationBuilder.rotateOverY(5).build();
 
 	viewMatrix = Transform::lookAt(
 		eye,
@@ -64,9 +65,9 @@ int main( void )
 	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };
 	LightProperties l4 = { glm::vec4(-1,-1,1,1), glm::vec4(1,1,0,1) };
 
-	glm::mat4 secondaryActorTransformation = glm::mat4(1);
+	glm::mat4 secondaryActorTransformation = transformationBuilder.translate(100, 0, 45).build();
 	RobotModel* robot1 = robotFactory.createRobot(secondaryActorTransformation);
-	glm::mat4 mainActorTransformation = transformationBuilder.translate(3, 0, 10).build();
+	glm::mat4 mainActorTransformation = transformationBuilder.translate(95, 0, 45).build();
 	RobotModel* robot2 = robotFactory.createRobot(mainActorTransformation );
 	HierarchicalModel* floor = robotFactory.createFloor();
 
@@ -74,6 +75,7 @@ int main( void )
 	View view = View(viewMatrix);
 
 	Scene scene = Scene(view, projector, sceneRenderer);
+	scene.adddSpotlightRotation(spotlightRotation);
 	scene.addLight(l1);
 	scene.addLight(l2);
 	scene.addLight(l3);
@@ -89,6 +91,7 @@ int main( void )
 		scene.render();
 		screen.swapBuffers();
 		viewAnimator.makeNextStep();
+		spotlightRotation = spotlightRotation * transformationBuilder.rotateOverY(0.5).build();
 
 	} // Check if the ESC key was pressed or the window was closed
 	while( screen.escapeHasNotBeenPressed());

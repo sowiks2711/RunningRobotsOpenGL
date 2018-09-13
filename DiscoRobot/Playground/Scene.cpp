@@ -24,11 +24,16 @@ void Scene::addLight(LightProperties light)
 	_lightColors.push_back(light.color);
 }
 
+void Scene::adddSpotlightRotation(glm::mat4 & spotlightRotation)
+{
+	_spotlightRotation = &spotlightRotation;
+}
+
 void Scene::render()
 {
 	_renderer.useDefaultShader();
 	_renderer.bindLigths(_view.getView(), _lightPositions, _lightColors);
-
+	_renderer.bindSpotLightRotation(_spotlightRotation == nullptr ? _identity : *_spotlightRotation);
 	for (AbstractModel* model : _models)
 	{
 		_renderer.renderModel(*model, _view.getView(), _projector.getProjection());

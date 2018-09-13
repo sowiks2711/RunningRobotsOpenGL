@@ -199,13 +199,16 @@ HierarchicalModel * RobotFactory::createFloor()
 
 			currentElement = nextElement;
 		}
-		nextPart = _partsFactory->createFloorPart();
-		HierarchicalModel* nextRowElement = new HierarchicalModel(nextPart);
-		wrappersTrackerList.push_back(nextRowElement);
-		rowBeginning->addChild(*nextRowElement, floorPartToNextRow );
-		rowBeginning = nextRowElement;
+		if (i != 9)
+		{
+			nextPart = _partsFactory->createFloorPart();
+			HierarchicalModel* nextRowElement = new HierarchicalModel(nextPart);
+			wrappersTrackerList.push_back(nextRowElement);
+			rowBeginning->addChild(*nextRowElement, floorPartToNextRow );
+			rowBeginning = nextRowElement;
 
-		currentElement = nextRowElement;
+			currentElement = nextRowElement;
+		}
 	}
 	glm::mat4 floorTranslation = transformationBuilder.translate(-50, -13.5, -50).build();
 	root->setRelativeTransformation(floorTranslation);

@@ -5,8 +5,10 @@ out vec4 fragcolor;
 
 in vec3 fragNormal;
 in vec4 fragPosition;
-in vec4 reflectorPosition;
-in vec4 spotlightFocusSpot;
+in vec4 rotatingReflectorPosition;
+in vec4 rotatingSpotlightFocusSpot;
+in vec4 staticReflectorPosition;
+in vec4 staticSpotlightFocusSpot;
 
 uniform vec4 _emission;
 uniform vec4 _diffuse;
@@ -17,12 +19,11 @@ uniform int _lightsUsed;
 uniform vec4 _lightsPositions[lightsCapacity];
 uniform vec4 _lightsColors[lightsCapacity];
 
-vec4 spotLight(const in vec4 lightcolor, const in vec3 normal, const in vec3 eyedirn) {
+vec4 spotLight(const in vec4 lightcolor, const in vec3 normal, const in vec3 eyedirn, in vec3 reflectorPosition, in vec3 spotlightFocusPosition) {
 
-		vec3 spotlightPosition = reflectorPosition.xyz/reflectorPosition.w;
-		vec3 direction = normalize (spotlightPosition  - fragPosition.xyz / fragPosition.w); 
-		vec3 surfaceToLight = spotlightPosition - fragPosition.xyz / fragPosition.w ;
-		vec3 coneDirection = normalize(spotlightFocusSpot.xyz/spotlightFocusSpot.w-spotlightPosition);
+		vec3 direction = normalize (reflectorPosition  - fragPosition.xyz / fragPosition.w); 
+		vec3 surfaceToLight = reflectorPosition - fragPosition.xyz / fragPosition.w ;
+		vec3 coneDirection = normalize(spotlightFocusPosition-reflectorPosition);
 		vec3 rayDirection = normalize(-surfaceToLight);
 		float lightToSurfaceAngle = degrees(acos(dot(rayDirection, coneDirection)));
 
@@ -73,6 +74,7 @@ void main()
 
 	color = color + ambient; 
 	color = color + _emission;
-	color = color + spotLight(vec4(1, 1, 1, 1), normalize(fragNormal), eyedirn);
+	color = color + spotLight(vec4(1, 1, 1, 1), normalize(fragNormal), eyedirn, rotatingReflectorPosition.xyz/rotatingReflectorPosition.w, rotatingSpotlightFocusSpot.xyz/rotatingSpotlightFocusSpot.w);
+	color = color + spotLight(vec4(0, 1, 0, 1), normalize(fragNormal), eyedirn, staticReflectorPosition.xyz/staticReflectorPosition.w, staticSpotlightFocusSpot.xyz/staticSpotlightFocusSpot.w);
 	fragcolor = color;
 }

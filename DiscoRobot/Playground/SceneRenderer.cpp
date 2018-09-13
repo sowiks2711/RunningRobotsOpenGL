@@ -9,6 +9,7 @@ SceneRenderer::SceneRenderer()
 	matricesIds.modelId = glGetUniformLocation(programId, "M");
 	matricesIds.viewId = glGetUniformLocation(programId, "V");
 	matricesIds.projectionId = glGetUniformLocation(programId, "P");
+	matricesIds.spotlightRotationId = glGetUniformLocation(programId, "SPOT_LIGHT_ROTATION");
 	materialPropertiesIds.emissionId = glGetUniformLocation(programId, "_emission");
 	materialPropertiesIds.diffuseId = glGetUniformLocation(programId, "_diffuse");
 	materialPropertiesIds.specularId = glGetUniformLocation(programId, "_specular");
@@ -43,6 +44,11 @@ void SceneRenderer::bindLigths(glm::mat4& view, std::vector<glm::vec4>& lightPos
 void SceneRenderer::useDefaultShader()
 {
 	glUseProgram(programId);
+}
+
+void SceneRenderer::bindSpotLightRotation(glm::mat4 & spotlightRotation)
+{
+	glUniformMatrix4fv(matricesIds.spotlightRotationId, 1, GL_FALSE, &spotlightRotation[0][0]);
 }
 
 
