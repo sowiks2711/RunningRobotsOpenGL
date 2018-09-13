@@ -5,6 +5,8 @@ out vec4 fragcolor;
 
 in vec3 fragNormal;
 in vec4 fragPosition;
+in vec4 reflectorPosition;
+in vec4 spotlightFocusSpot;
 
 uniform vec4 _emission;
 uniform vec4 _diffuse;
@@ -15,33 +17,45 @@ uniform int _lightsUsed;
 uniform vec4 _lightsPositions[lightsCapacity];
 uniform vec4 _lightsColors[lightsCapacity];
 
+vec4 spotLight(const in vec4 lightcolor, const in vec3 normal, const in vec3 eyedirn) {
 
-vec4 ComputeLight(const in vec3 direction, const in vec4 lightcolor, const in vec3 normal, const in vec3 halfvec, const in vec4 mydiffuse, const in vec4 myspecular, const in float myshininess) {
+		vec3 spotlightPosition = reflectorPosition.xyz/reflectorPosition.w;
+		vec3 direction = normalize (spotlightPosition  - fragPosition.xyz / fragPosition.w); 
+		vec3 surfaceToLight = spotlightPosition - fragPosition.xyz / fragPosition.w ;
+		vec3 coneDirection = normalize(spotlightFocusSpot.xyz/spotlightFocusSpot.w-spotlightPosition);
+		vec3 rayDirection = normalize(-surfaceToLight);
+		float lightToSurfaceAngle = degrees(acos(dot(rayDirection, coneDirection)));
 
+		vec3 halfvec = normalize (direction + eyedirn) ;  
         float nDotL = dot(normal, direction)  ;         
-        vec4 lambert = mydiffuse * lightcolor * max (nDotL, 0.0) ;  
+        vec4 lambert = _diffuse * lightcolor * max (nDotL, 0.0) ;  
 
         float nDotH = dot(normal, halfvec) ; 
-        vec4 phong = myspecular * lightcolor * pow (max(nDotH, 0.0), myshininess) ; 
+        vec4 phong = _specular * lightcolor * pow (max(nDotH, 0.0), _shininess) ; 
+
+        vec4 retval = lambert + phong ; 
+		if (lightToSurfaceAngle > 20)
+			retval = vec4(0,0,0,0);
+
+        return retval ;            
+}    
+
+vec4 ComputeLight(const in vec3 direction, const in vec4 lightcolor, const in vec3 normal, const in vec3 eyedirn) {
+
+		vec3 halfvec = normalize (direction + eyedirn) ;  
+        float nDotL = dot(normal, direction)  ;         
+        vec4 lambert = _diffuse * lightcolor * max (nDotL, 0.0) ;  
+
+        float nDotH = dot(normal, halfvec) ; 
+        vec4 phong = _specular * lightcolor * pow (max(nDotH, 0.0), _shininess) ; 
 
         vec4 retval = lambert + phong ; 
 
-		vec4 reflectorPosition = vec4(0,20,0,1);
-		vec4 L = reflectorPosition - fragPosition;
-		vec4 r = reflectorPosition - vec4(0,0,0,1);
-
-		float cosrd = max( 0, dot(normalize (r),normalize( L)));
-		vec4 reflectorLight = vec4(1,0,1,1) * pow (cosrd, _shininess);
-
-
-        return retval + reflectorLight;            
+        return retval ;            
 }    
 void main()
 {
 	vec4 color = vec4(0,0,0,0); 
-	vec4 diffuse = _diffuse; 
-	vec4 specular = _specular;
-	float shininess = _shininess;
 	vec4 ambient = vec4(0.2, 0.2, 0.2, 1);
 	const vec3 eyepos = vec3(0,0,0);
 
@@ -54,11 +68,11 @@ void main()
 		vec4 lightcolor = _lightsColors[i]; 
 		vec3 position = lightposn.xyz/lightposn.w;
 		vec3 direction = normalize (position - mypos); 
-		vec3 half1 = normalize (direction + eyedirn) ;  
-		color = color + ComputeLight(direction, lightcolor, normalize(fragNormal), half1, diffuse, specular, shininess);
+		color = color + ComputeLight(direction, lightcolor, normalize(fragNormal), eyedirn);
 	}
 
 	color = color + ambient; 
 	color = color + _emission;
+	color = color + spotLight(vec4(1, 1, 1, 1), normalize(fragNormal), eyedirn);
 	fragcolor = color;
 }

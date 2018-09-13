@@ -1,5 +1,7 @@
 #pragma once
 #include "Playground\AbstractModel.h"
+#include "Playground\TransformationMatricesHandles.h"
+
 class SimpleModel :
 	public AbstractModel
 {
@@ -9,7 +11,7 @@ class SimpleModel :
 public:
 	SimpleModel();
 	SimpleModel(ModelRenderer* renderer, glm::mat4& modelMatrix, LightInteractionProperties& materialProperties);
-	void render(const GLuint mvId, const glm::mat4 &view, const GLuint pId, const glm::mat4 &P);
+	void render(const TransformationMatricesHandles& matricesHandles, const glm::mat4 &M, const glm::mat4 &V, const glm::mat4 &P);
 	void bindMaterialProperties(LightInteractionPropertiesHandles& handles);
 	glm::mat4& getCurrentTransformation();
 	const LightInteractionProperties& getMaterialProperties();

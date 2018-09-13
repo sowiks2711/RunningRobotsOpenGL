@@ -1,9 +1,12 @@
 #pragma once
 #include "Playground\AbstractModel.h"
 #include "SimpleModel.h"
+#include "Playground\TransformationMatricesHandles.h"
+
 class HierarchicalModel :
 	public AbstractModel
 {
+	glm::mat4 identity = glm::mat4(1);
 	HierarchicalModel* _parent;
 	glm::mat4 _transformation;
 	SimpleModel* _model;
@@ -14,7 +17,7 @@ class HierarchicalModel :
 public:
 	HierarchicalModel();
 	HierarchicalModel(SimpleModel* model);
-	virtual void render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4 &P);
+	virtual void render(const TransformationMatricesHandles& matricesHandles, const glm::mat4 &M, const glm::mat4 &V, const glm::mat4 &P);
 	virtual void bindMaterialProperties(LightInteractionPropertiesHandles& handles);
 	virtual glm::mat4& getCurrentTransformation();
 	virtual const LightInteractionProperties& getMaterialProperties();

@@ -9,9 +9,10 @@ HierarchicalModel::HierarchicalModel()
 HierarchicalModel::HierarchicalModel(SimpleModel* model): HierarchicalModel()
 {
 	_model = model;
+	_transformation = model->getCurrentTransformation();
 }
 
-void HierarchicalModel::render(const GLuint mvId, const glm::mat4 &view, const GLuint pId, const glm::mat4 & P)
+void HierarchicalModel::render(const TransformationMatricesHandles& matricesHandles, const glm::mat4 &M, const glm::mat4 &V, const glm::mat4 &P)
 {
 	_model->bindMaterialProperties(*_handles);
 	//_transformation = parent->_transformation * parentToMeTranslation * animator * simpleMT
@@ -20,12 +21,12 @@ void HierarchicalModel::render(const GLuint mvId, const glm::mat4 &view, const G
 	_transformation = parentTransformation * _parentToMeTransformation ;
 	_transformation = _transformation * (_animationMatrix == nullptr ? glm::mat4(1) : *_animationMatrix );
 
-	_model->render(mvId, view * _transformation, pId, P);
+	_model->render(matricesHandles, _transformation , V,  P);
 
 	for(HierarchicalModel* child : _children)
 	{
 		child->bindMaterialProperties(*_handles);
-		child->render(mvId, view, pId, P);
+		child->render(matricesHandles, identity, V,  P);
 	}
 }
 

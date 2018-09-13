@@ -17,9 +17,9 @@ void RobotModel::setStartingTranslation(glm::mat4& translation)
 	_modelRoot->setAnimationMatrix(translation);
 }
 
-void RobotModel::render(const GLuint mvId, const glm::mat4 & view, const GLuint pId, const glm::mat4 & P)
+void RobotModel::render(const TransformationMatricesHandles& matricesHandles, const glm::mat4& M, const glm::mat4& V, const glm::mat4 &P)
 {
-	_modelRoot->render(mvId, view, pId, P);
+	_modelRoot->render(matricesHandles, M, V, P);
 	_animator->makeAnimationStep();
 }
 

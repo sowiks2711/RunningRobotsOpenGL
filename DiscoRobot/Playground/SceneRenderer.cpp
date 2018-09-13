@@ -6,7 +6,8 @@
 SceneRenderer::SceneRenderer()
 {
 	programId = LoadShaders("SimpleVertexShader.vert", "SimpleFragmentShader.frag");
-	matricesIds.modelViewId = glGetUniformLocation(programId, "MV");
+	matricesIds.modelId = glGetUniformLocation(programId, "M");
+	matricesIds.viewId = glGetUniformLocation(programId, "V");
 	matricesIds.projectionId = glGetUniformLocation(programId, "P");
 	materialPropertiesIds.emissionId = glGetUniformLocation(programId, "_emission");
 	materialPropertiesIds.diffuseId = glGetUniformLocation(programId, "_diffuse");
@@ -20,7 +21,7 @@ SceneRenderer::SceneRenderer()
 void SceneRenderer::renderModel(AbstractModel& model, glm::mat4& view, glm::mat4& projection)
 {
 	model.bindMaterialProperties(getMaterialPropertiesHandles());
-	model.render(matricesIds.modelViewId, view, matricesIds.projectionId, projection);
+	model.render(matricesIds, model.getCurrentTransformation(), view, projection);
 }
 
 LightInteractionPropertiesHandles& SceneRenderer::getMaterialPropertiesHandles()

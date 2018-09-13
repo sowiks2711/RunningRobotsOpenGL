@@ -53,14 +53,14 @@ int main( void )
 			90,
 			screen.getAspectRatio(),
 			0.1f,
-			100.0f
+			1000.0f
 		).build();
 
 	Projector projector = Projector(projection, screen);
 	SceneRenderer sceneRenderer = SceneRenderer();
 
 	LightProperties l1 = { glm::vec4(1,1,-11,1), glm::vec4(1,0,0,1) };
-	LightProperties l2 = { glm::vec4(-1,1,-1,1), glm::vec4(0,1,0,1) };
+	LightProperties l2 = { glm::vec4(-1,1,-1,1), glm::vec4(0,0.1,0,1) };
 	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };
 	LightProperties l4 = { glm::vec4(-1,-1,1,1), glm::vec4(1,1,0,1) };
 

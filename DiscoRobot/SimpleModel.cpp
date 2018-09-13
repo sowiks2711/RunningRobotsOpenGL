@@ -13,10 +13,9 @@ SimpleModel::SimpleModel(ModelRenderer * renderer, glm::mat4 & modelMatrix, Ligh
 	this->_materialProperties = materialProperties;
 }
 
-void SimpleModel::render(const GLuint mvId, const glm::mat4 & view, const GLuint pId, const glm::mat4 & P)
+void SimpleModel::render(const TransformationMatricesHandles& matricesHandles, const glm::mat4& M, const glm::mat4& V, const glm::mat4& P)
 {
-	glm::mat4 MV = view * _modelCoordinates;
-	this->_renderer->render(mvId, MV, pId, P);
+	this->_renderer->render(matricesHandles, M*_modelCoordinates, V, P);
 }
 
 void SimpleModel::bindMaterialProperties(LightInteractionPropertiesHandles & handles)

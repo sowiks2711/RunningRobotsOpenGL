@@ -4,7 +4,8 @@
 struct TransformationMatricesHandles
 {
 public:
-	GLuint modelViewId;
+	GLuint viewId;
+	GLuint modelId;
 	GLuint projectionId;
 };
 

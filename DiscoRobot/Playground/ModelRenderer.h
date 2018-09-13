@@ -8,6 +8,7 @@
 #include "AbstractGeometry.h"
 #include "LightInteractionProperties.h"
 #include "LightInteractionPropertiesHandles.h"
+#include "TransformationMatricesHandles.h"
 
 class ModelRenderer
 {
@@ -21,7 +22,7 @@ protected:
 	virtual void draw();
 public:
 	ModelRenderer();
-	virtual void render(const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4& P);
+	virtual void render(const TransformationMatricesHandles& matricesHandles, const glm::mat4 &M, const glm::mat4 &V, const glm::mat4& P);
 	void bindArrayToAtrribute(GLuint attributeId, GLuint bufferId, int vecDimentions);
 	void bindColourProperties(const LightInteractionProperties& _properties, const LightInteractionPropertiesHandles& handles);
 	~ModelRenderer();

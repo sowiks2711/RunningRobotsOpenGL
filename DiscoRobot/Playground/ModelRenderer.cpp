@@ -27,10 +27,11 @@ void ModelRenderer::initOpenGlBuffer(GLuint& bufferId, size_t verticesSize,const
 	glBufferData(GL_ARRAY_BUFFER, verticesSize, arrayStart, GL_STATIC_DRAW);
 }
 
-void ModelRenderer::render( const GLuint mvId, const glm::mat4 &MV, const GLuint pId, const glm::mat4 &P)
+void ModelRenderer::render(const TransformationMatricesHandles& matricesHandles, const glm::mat4 &M, const glm::mat4 &V, const glm::mat4& P)
 {
-	glUniformMatrix4fv(mvId, 1, GL_FALSE, &MV[0][0]);
-	glUniformMatrix4fv(pId, 1, GL_FALSE, &P[0][0]);
+	glUniformMatrix4fv(matricesHandles.modelId, 1, GL_FALSE, &M[0][0]);
+	glUniformMatrix4fv(matricesHandles.viewId, 1, GL_FALSE, &V[0][0]);
+	glUniformMatrix4fv(matricesHandles.projectionId, 1, GL_FALSE, &P[0][0]);
 	glBindVertexArray(_vertexArrayId);
 	bindArrayToAtrribute(0, _verticesBufferId, 3);
 	bindArrayToAtrribute(1, _normalsBufferId, 3);

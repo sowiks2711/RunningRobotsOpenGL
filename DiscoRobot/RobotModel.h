@@ -2,6 +2,7 @@
 #include ".\Playground\AbstractModel.h"
 #include "HierarchicalModel.h"
 #include "RobotAnimator.h"
+#include "Playground\TransformationMatricesHandles.h"
 
 class RobotModel :
 	public AbstractModel
@@ -12,7 +13,7 @@ public:
 	RobotModel();
 	RobotModel(HierarchicalModel* modelRoot, RobotAnimator* animator);
 	void setStartingTranslation(glm::mat4& translation);
-	virtual void render(const GLuint mvId, const glm::mat4& view, const GLuint pId, const glm::mat4 &P);
+	virtual void render(const TransformationMatricesHandles& matricesHandles, const glm::mat4& M, const glm::mat4& V, const glm::mat4 &P);
 	virtual void bindMaterialProperties(LightInteractionPropertiesHandles& handles);
 	virtual glm::mat4& getCurrentTransformation();
 	virtual const LightInteractionProperties& getMaterialProperties();
