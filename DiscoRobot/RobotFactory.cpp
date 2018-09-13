@@ -35,6 +35,15 @@ RobotFactory::RobotFactory()
 	floorPartToNextRow = transformationBuilder
 		.translate(0, 0, 20)
 		.build();
+	floorToFillar= transformationBuilder
+		.translate(0, 15, 0)
+		.build();
+	fillarToBearing = transformationBuilder
+		.translate(0, 25, 0)
+		.build();
+	floorToBlob = transformationBuilder
+		.translate(0, 7, 0)
+		.build();
 }
 
 RobotFactory::RobotFactory(RobotPartsFactory & partsFactory):RobotFactory()
@@ -188,6 +197,7 @@ HierarchicalModel * RobotFactory::createFloor()
 	HierarchicalModel* currentElement = root;
 	SimpleModel* nextPart;
 	HierarchicalModel* nextElement;
+	placeFillar(root);
 	for (int i = 0; i < 10; i++) 
 	{
 		for (int j = 0; j < 9; j++)
@@ -198,6 +208,10 @@ HierarchicalModel * RobotFactory::createFloor()
 			currentElement->addChild(*nextElement, floorPartToNextColumn );
 
 			currentElement = nextElement;
+			if (i == 9 && j == 8 || i == 0 && j == 8 )
+				placeFillar(currentElement);
+			if ( i == 5 && j ==4|| i == 3 && j ==2)
+				placeBlob(currentElement);
 		}
 		if (i != 9)
 		{
@@ -208,12 +222,34 @@ HierarchicalModel * RobotFactory::createFloor()
 			rowBeginning = nextRowElement;
 
 			currentElement = nextRowElement;
+			if (i == 8)
+				placeFillar(currentElement);
 		}
 	}
 	glm::mat4 floorTranslation = transformationBuilder.translate(-50, -13.5, -50).build();
 	root->setRelativeTransformation(floorTranslation);
 	wrappersTrackerList.push_back(root);
 	return root;
+}
+
+void RobotFactory::placeFillar(HierarchicalModel * currentElement)
+{
+	SimpleModel* fillarPart = _partsFactory->createFillarPart();
+	SimpleModel* fillarBearingPart = _partsFactory->createFillarBearingPart();
+	HierarchicalModel* fillar = new HierarchicalModel(fillarPart);
+	HierarchicalModel* fillarBearing = new HierarchicalModel(fillarBearingPart);
+	fillar->addChild(*fillarBearing, fillarToBearing);
+	currentElement->addChild(*fillar, floorToFillar);
+	wrappersTrackerList.push_back(fillar);
+	wrappersTrackerList.push_back(fillarBearing);
+}
+
+void RobotFactory::placeBlob(HierarchicalModel * currentElement)
+{
+	SimpleModel* blobPart = _partsFactory->createBlobPart();
+	HierarchicalModel* blob = new HierarchicalModel(blobPart);
+	currentElement->addChild(*blob, floorToBlob);
+	wrappersTrackerList.push_back(blob);
 }
 
 RobotFactory::~RobotFactory()

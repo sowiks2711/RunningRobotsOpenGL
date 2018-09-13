@@ -60,10 +60,10 @@ int main( void )
 	Projector projector = Projector(projection, screen);
 	SceneRenderer sceneRenderer = SceneRenderer();
 
-	LightProperties l1 = { glm::vec4(1,1,-11,1), glm::vec4(1,0,0,1) };
-	LightProperties l2 = { glm::vec4(-1,1,-1,1), glm::vec4(0,0.1,0,1) };
-	LightProperties l3 = { glm::vec4(1,-1,1,1), glm::vec4(0,0,1,1) };
-	LightProperties l4 = { glm::vec4(-1,-1,1,1), glm::vec4(1,1,0,1) };
+	LightProperties l1 = { glm::vec4(31,11,31,1), glm::vec4(1,0,0,1) };
+	LightProperties l2 = { glm::vec4(-31,11,31,1), glm::vec4(1,0,1,1) };
+	LightProperties l3 = { glm::vec4(31,11,-31,1), glm::vec4(0,0,1,1) };
+	LightProperties l4 = { glm::vec4(-31,11,-31,1), glm::vec4(1,1,0,1) };
 
 	glm::mat4 secondaryActorTransformation = transformationBuilder.translate(100, 0, 45).build();
 	RobotModel* robot1 = robotFactory.createRobot(secondaryActorTransformation);

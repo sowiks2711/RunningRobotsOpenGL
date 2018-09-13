@@ -127,6 +127,36 @@ SimpleModel * RobotPartsFactory::createFloorPart()
 		.build();
 }
 
+SimpleModel * RobotPartsFactory::createFillarPart()
+{
+	return &prepareGreenCubicPart()
+		->setTransformation(
+			transformationBuilder.scale(10,25,10).build()
+		)
+		.build();
+}
+
+SimpleModel * RobotPartsFactory::createFillarBearingPart()
+{
+	return &prepareRedBearingPart()
+		->setTransformation(
+			transformationBuilder.scale(1).build()
+		)
+		.build();
+}
+
+SimpleModel * RobotPartsFactory::createBlobPart()
+{
+	return &sfereBuilder->setEmission(0x93 / 255., 0x08 / 255., 0x12 / 255.)
+		.setDiffuse(0x93 / 255., 0x08 / 255., 0x12 / 255.)
+		.setShininess(1400)
+		.setSpecular(1, 1, 1)
+		.setTransformation(
+			transformationBuilder.scale(0.5).build()
+		)
+		.build();
+}
+
 
 RobotPartsFactory::~RobotPartsFactory()
 {

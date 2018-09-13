@@ -24,6 +24,9 @@ public:
 	SimpleModel* createEye();
 	SimpleModel* createMouth();
 	SimpleModel* createFloorPart();
+	SimpleModel* createFillarPart();
+	SimpleModel* createFillarBearingPart();
+	SimpleModel* createBlobPart();
 	~RobotPartsFactory();
 };
 
