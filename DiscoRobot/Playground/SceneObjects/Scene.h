@@ -2,8 +2,8 @@
 #include "AbstractModel.h"
 #include "View.h"
 #include "Projector.h"
-#include "LightProperties.h"
-#include "SceneRenderer.h"
+#include "..\POCOs\LightProperties.h"
+#include "..\Renderers\SceneRenderer.h"
 
 class Scene
 {

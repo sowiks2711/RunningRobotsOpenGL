@@ -115,77 +115,85 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="RobotAnimation.cpp" />
-    <ClCompile Include="HierarchicalModel.cpp" />
-    <ClCompile Include="RobotAnimator.cpp" />
-    <ClCompile Include="RobotFactory.cpp" />
-    <ClCompile Include="RobotModel.cpp" />
-    <ClCompile Include="RobotPartsFactory.cpp" />
-    <ClCompile Include="Playground\AbstractGeometry.cpp" />
-    <ClCompile Include="Playground\AbstractModel.cpp" />
-    <ClCompile Include="Playground\Cube.cpp" />
-    <ClCompile Include="Playground\CubeModelBuilder.cpp" />
-    <ClCompile Include="Playground\CubeRenderer.cpp" />
-    <ClCompile Include="Playground\ModelBuilder.cpp" />
-    <ClCompile Include="Playground\ModelRenderer.cpp" />
-    <ClCompile Include="Playground\Playground.cpp" />
-    <ClCompile Include="Playground\Projector.cpp" />
-    <ClCompile Include="Playground\Scene.cpp" />
-    <ClCompile Include="Playground\SceneRenderer.cpp" />
-    <ClCompile Include="Playground\Screen.cpp" />
-    <ClCompile Include="Playground\ScreenRenderer.cpp" />
-    <ClCompile Include="Playground\Sfere.cpp" />
-    <ClCompile Include="Playground\SfereModelBuilder.cpp" />
-    <ClCompile Include="Playground\SfereRenderer.cpp" />
-    <ClCompile Include="Playground\Transform.cpp" />
-    <ClCompile Include="Playground\TransformationBuilder.cpp" />
-    <ClCompile Include="Playground\View.cpp" />
-    <ClCompile Include="ShaderLoader\Shader.cpp" />
-    <ClCompile Include="SimpleModel.cpp" />
-    <ClCompile Include="ViewAnimator.cpp" />
-    <ClCompile Include="WalkingAnimation.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="RobotAnimation.h" />
-    <ClInclude Include="ArmRotators.h" />
-    <ClInclude Include="LegRotators.h" />
-    <ClInclude Include="RobotAnimator.h" />
-    <ClInclude Include="RobotFactory.h" />
-    <ClInclude Include="RobotModel.h" />
-    <ClInclude Include="RobotPartsFactory.h" />
-    <ClInclude Include="Playground\AbstractGeometry.h" />
-    <ClInclude Include="Playground\AbstractModel.h" />
-    <ClInclude Include="Playground\Cube.h" />
-    <ClInclude Include="Playground\CubeModelBuilder.h" />
-    <ClInclude Include="Playground\CubeRenderer.h" />
-    <ClInclude Include="Playground\LightInteractionProperties.h" />
-    <ClInclude Include="Playground\LightInteractionPropertiesHandles.h" />
-    <ClInclude Include="Playground\LightProperties.h" />
-    <ClInclude Include="Playground\LightPropertiesHandles.h" />
-    <ClInclude Include="Playground\ModelBuilder.h" />
-    <ClInclude Include="Playground\ModelRenderer.h" />
-    <ClInclude Include="Playground\Projector.h" />
-    <ClInclude Include="Playground\Scene.h" />
-    <ClInclude Include="Playground\SceneRenderer.h" />
-    <ClInclude Include="Playground\Screen.h" />
-    <ClInclude Include="Playground\ScreenRenderer.h" />
-    <ClInclude Include="Playground\Sfere.h" />
-    <ClInclude Include="Playground\SfereModelBuilder.h" />
-    <ClInclude Include="Playground\SfereRenderer.h" />
-    <ClInclude Include="Playground\Transform.h" />
-    <ClInclude Include="Playground\TransformationBuilder.h" />
-    <ClInclude Include="Playground\TransformationMatricesHandles.h" />
-    <ClInclude Include="Playground\View.h" />
-    <ClInclude Include="ShaderLoader\Shader.hpp" />
-    <ClInclude Include="SimpleModel.h" />
-    <ClInclude Include="HierarchicalModel.h" />
-    <ClInclude Include="ViewAnimator.h" />
-    <ClInclude Include="WalkingAnimation.h" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <None Include="SimpleFragmentShader.frag" />
-    <None Include="SimpleVertexShader.vert" />
+    <None Include="SimpleFragmentShader.frag">
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
+    <None Include="SimpleVertexShader.vert">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <FileType>Document</FileType>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</DeploymentContent>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Playground\Animation\RobotAnimation.h" />
+    <ClInclude Include="Playground\Animation\RobotAnimator.h" />
+    <ClInclude Include="Playground\Animation\ViewAnimator.h" />
+    <ClInclude Include="Playground\Animation\WalkingAnimation.h" />
+    <ClInclude Include="Playground\Geometry\AbstractGeometry.h" />
+    <ClInclude Include="Playground\Geometry\Cube.h" />
+    <ClInclude Include="Playground\Geometry\Sfere.h" />
+    <ClInclude Include="Playground\POCOs\ArmRotators.h" />
+    <ClInclude Include="Playground\POCOs\LegRotators.h" />
+    <ClInclude Include="Playground\POCOs\LightInteractionProperties.h" />
+    <ClInclude Include="Playground\POCOs\LightInteractionPropertiesHandles.h" />
+    <ClInclude Include="Playground\POCOs\LightProperties.h" />
+    <ClInclude Include="Playground\POCOs\LightPropertiesHandles.h" />
+    <ClInclude Include="Playground\POCOs\TransformationMatricesHandles.h" />
+    <ClInclude Include="Playground\Renderers\CubeRenderer.h" />
+    <ClInclude Include="Playground\Renderers\ModelRenderer.h" />
+    <ClInclude Include="Playground\Renderers\SceneRenderer.h" />
+    <ClInclude Include="Playground\Renderers\ScreenRenderer.h" />
+    <ClInclude Include="Playground\Renderers\SfereRenderer.h" />
+    <ClInclude Include="Playground\SceneObjects\AbstractModel.h" />
+    <ClInclude Include="Playground\SceneObjects\CubeModelBuilder.h" />
+    <ClInclude Include="Playground\SceneObjects\HierarchicalModel.h" />
+    <ClInclude Include="Playground\SceneObjects\ModelBuilder.h" />
+    <ClInclude Include="Playground\SceneObjects\Projector.h" />
+    <ClInclude Include="Playground\SceneObjects\RobotFactory.h" />
+    <ClInclude Include="Playground\SceneObjects\RobotModel.h" />
+    <ClInclude Include="Playground\SceneObjects\RobotPartsFactory.h" />
+    <ClInclude Include="Playground\SceneObjects\Scene.h" />
+    <ClInclude Include="Playground\SceneObjects\Screen.h" />
+    <ClInclude Include="Playground\SceneObjects\SfereModelBuilder.h" />
+    <ClInclude Include="Playground\SceneObjects\SimpleModel.h" />
+    <ClInclude Include="Playground\SceneObjects\View.h" />
+    <ClInclude Include="Playground\Transformation\Transform.h" />
+    <ClInclude Include="Playground\Transformation\TransformationBuilder.h" />
+    <ClInclude Include="ShaderLoader\Shader.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Playground\Animation\RobotAnimation.cpp" />
+    <ClCompile Include="Playground\Animation\RobotAnimator.cpp" />
+    <ClCompile Include="Playground\Animation\ViewAnimator.cpp" />
+    <ClCompile Include="Playground\Animation\WalkingAnimation.cpp" />
+    <ClCompile Include="Playground\Geometry\AbstractGeometry.cpp" />
+    <ClCompile Include="Playground\Geometry\Cube.cpp" />
+    <ClCompile Include="Playground\Geometry\Sfere.cpp" />
+    <ClCompile Include="Playground\Playground.cpp" />
+    <ClCompile Include="Playground\Renderers\CubeRenderer.cpp" />
+    <ClCompile Include="Playground\Renderers\ModelRenderer.cpp" />
+    <ClCompile Include="Playground\Renderers\SceneRenderer.cpp" />
+    <ClCompile Include="Playground\Renderers\ScreenRenderer.cpp" />
+    <ClCompile Include="Playground\Renderers\SfereRenderer.cpp" />
+    <ClCompile Include="Playground\SceneObjects\AbstractModel.cpp" />
+    <ClCompile Include="Playground\SceneObjects\CubeModelBuilder.cpp" />
+    <ClCompile Include="Playground\SceneObjects\HierarchicalModel.cpp" />
+    <ClCompile Include="Playground\SceneObjects\ModelBuilder.cpp" />
+    <ClCompile Include="Playground\SceneObjects\Projector.cpp" />
+    <ClCompile Include="Playground\SceneObjects\RobotFactory.cpp" />
+    <ClCompile Include="Playground\SceneObjects\RobotModel.cpp" />
+    <ClCompile Include="Playground\SceneObjects\RobotPartsFactory.cpp" />
+    <ClCompile Include="Playground\SceneObjects\Scene.cpp" />
+    <ClCompile Include="Playground\SceneObjects\Screen.cpp" />
+    <ClCompile Include="Playground\SceneObjects\SfereModelBuilder.cpp" />
+    <ClCompile Include="Playground\SceneObjects\SimpleModel.cpp" />
+    <ClCompile Include="Playground\SceneObjects\View.cpp" />
+    <ClCompile Include="Playground\Transformation\Transform.cpp" />
+    <ClCompile Include="Playground\Transformation\TransformationBuilder.cpp" />
+    <ClCompile Include="ShaderLoader\Shader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

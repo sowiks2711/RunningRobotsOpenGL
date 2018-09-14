@@ -1,6 +1,7 @@
 #pragma once
-#include "Playground\Transform.h"
-#include "Playground\TransformationBuilder.h"
+#include "..\Transformation\Transform.h"
+#include "..\Transformation\TransformationBuilder.h"
+
 class ViewAnimator
 {
 	glm::mat4* _mainActorTransformation;

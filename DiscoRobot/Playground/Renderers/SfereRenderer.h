@@ -1,6 +1,6 @@
 #pragma once
 #include "ModelRenderer.h"
-#include "Sfere.h"
+#include "..\Geometry\Sfere.h"
 class SfereRenderer :
 	public ModelRenderer
 {

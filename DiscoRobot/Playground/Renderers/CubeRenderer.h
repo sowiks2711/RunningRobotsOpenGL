@@ -1,6 +1,7 @@
 #pragma once
 #include "ModelRenderer.h"
-#include "Cube.h"
+#include "..\Geometry\Cube.h"
+
 class CubeRenderer :
 	public ModelRenderer
 {

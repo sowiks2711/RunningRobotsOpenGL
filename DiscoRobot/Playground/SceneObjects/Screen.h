@@ -1,5 +1,5 @@
 #pragma once
-#include "ScreenRenderer.h"
+#include "..\Renderers\ScreenRenderer.h"
 class Screen
 {
 	ScreenRenderer _screenRenderer;

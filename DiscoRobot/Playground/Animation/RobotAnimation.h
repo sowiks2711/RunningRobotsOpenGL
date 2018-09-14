@@ -1,6 +1,7 @@
 #pragma once
-#include "ArmRotators.h"
-#include "LegRotators.h"
+#include "..\POCOs\ArmRotators.h"
+#include "..\POCOs\LegRotators.h"
+
 class RobotAnimation
 {
 protected:

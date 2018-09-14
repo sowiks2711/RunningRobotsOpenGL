@@ -1,9 +1,9 @@
 #pragma once
 #include "GL\glew.h"
-#include "Playground\TransformationBuilder.h"
+#include "..\Transformation\TransformationBuilder.h"
 #include "SimpleModel.h"
-#include "Playground\CubeModelBuilder.h"
-#include "Playground\SfereModelBuilder.h"
+#include "CubeModelBuilder.h"
+#include "SfereModelBuilder.h"
 
 class RobotPartsFactory
 {

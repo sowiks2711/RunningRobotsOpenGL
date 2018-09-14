@@ -1,5 +1,4 @@
 #include "SceneRenderer.h"
-#include "..\ShaderLoader\Shader.hpp"
 
 
 

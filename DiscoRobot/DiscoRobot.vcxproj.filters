@@ -25,211 +25,33 @@
     <Filter Include="Header Files\SceneObjects">
       <UniqueIdentifier>{caa8613b-36ec-47fb-84fa-1348585ec7e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Geometry">
-      <UniqueIdentifier>{64cce9b3-ce47-4d1b-88fd-6a94c8251422}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Geometry">
       <UniqueIdentifier>{db88be56-c046-460b-8816-a276d29501bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\SceneObjects">
       <UniqueIdentifier>{0a8b54a3-cfd1-42c5-b85f-ec96a275d5e0}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Playground\Transform.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\CubeRenderer.cpp">
-      <Filter>Source Files\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\ModelRenderer.cpp">
-      <Filter>Source Files\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\SceneRenderer.cpp">
-      <Filter>Source Files\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\ScreenRenderer.cpp">
-      <Filter>Source Files\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\SfereRenderer.cpp">
-      <Filter>Source Files\Renderers</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\AbstractGeometry.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Cube.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Sfere.cpp">
-      <Filter>Source Files\Geometry</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Scene.cpp">
-      <Filter>Source Files\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Screen.cpp">
-      <Filter>Source Files\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\View.cpp">
-      <Filter>Source Files\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Projector.cpp">
-      <Filter>Source Files\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\AbstractModel.cpp">
-      <Filter>Source Files\SceneObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="ShaderLoader\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\Playground.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\TransformationBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\ModelBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\SfereModelBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Playground\CubeModelBuilder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SimpleModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HierarchicalModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotPartsFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotFactory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotAnimator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RobotAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WalkingAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewAnimator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Playground\LightInteractionProperties.h">
-      <Filter>Header Files\POCOs</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\LightInteractionPropertiesHandles.h">
-      <Filter>Header Files\POCOs</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\LightProperties.h">
-      <Filter>Header Files\POCOs</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\LightPropertiesHandles.h">
-      <Filter>Header Files\POCOs</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\TransformationMatricesHandles.h">
-      <Filter>Header Files\POCOs</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\CubeRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\ModelRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\SceneRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\ScreenRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\SfereRenderer.h">
-      <Filter>Header Files\Renderers</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\AbstractModel.h">
-      <Filter>Header Files\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Projector.h">
-      <Filter>Header Files\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Scene.h">
-      <Filter>Header Files\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Screen.h">
-      <Filter>Header Files\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\View.h">
-      <Filter>Header Files\SceneObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\AbstractGeometry.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Cube.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Sfere.h">
-      <Filter>Header Files\Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="ShaderLoader\Shader.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\TransformationBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\Transform.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\ModelBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\SfereModelBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Playground\CubeModelBuilder.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HierarchicalModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotPartsFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotFactory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotAnimator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ArmRotators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LegRotators.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RobotAnimation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="WalkingAnimation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewAnimator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Header Files\Animation">
+      <UniqueIdentifier>{78994581-18c5-4c3b-ba5f-a4cce0756830}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Geometry">
+      <UniqueIdentifier>{64cce9b3-ce47-4d1b-88fd-6a94c8251422}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Transformation">
+      <UniqueIdentifier>{768c1ca3-0497-4b6c-ada0-76eb0c8f162d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Animation">
+      <UniqueIdentifier>{373276b4-5e76-439f-be95-12f72fd12b87}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Transformation">
+      <UniqueIdentifier>{96b6dc94-1c76-4970-b6de-7a75e145c21f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\ShaderLoader">
+      <UniqueIdentifier>{7579bd3d-1fb4-4e24-b687-c7212dde78a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\ShaderLoader">
+      <UniqueIdentifier>{c2d2dc36-8a70-4190-9925-aeabac52802c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -239,5 +61,201 @@
     <None Include="SimpleVertexShader.vert">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Playground\POCOs\ArmRotators.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\LegRotators.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\LightInteractionProperties.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\LightInteractionPropertiesHandles.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\LightProperties.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\LightPropertiesHandles.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\POCOs\TransformationMatricesHandles.h">
+      <Filter>Header Files\POCOs</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Animation\RobotAnimation.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Animation\RobotAnimator.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Animation\ViewAnimator.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Animation\WalkingAnimation.h">
+      <Filter>Header Files\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Geometry\AbstractGeometry.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Geometry\Cube.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Geometry\Sfere.h">
+      <Filter>Header Files\Geometry</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Renderers\CubeRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Renderers\ModelRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Renderers\SceneRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Renderers\ScreenRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Renderers\SfereRenderer.h">
+      <Filter>Header Files\Renderers</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\AbstractModel.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\CubeModelBuilder.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\HierarchicalModel.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\ModelBuilder.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\Projector.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\RobotFactory.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\RobotModel.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\RobotPartsFactory.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\Scene.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\Screen.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\SfereModelBuilder.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\SimpleModel.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\SceneObjects\View.h">
+      <Filter>Header Files\SceneObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Transformation\Transform.h">
+      <Filter>Header Files\Transformation</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground\Transformation\TransformationBuilder.h">
+      <Filter>Header Files\Transformation</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderLoader\Shader.hpp">
+      <Filter>Header Files\ShaderLoader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Playground\Animation\RobotAnimation.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Animation\RobotAnimator.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Animation\ViewAnimator.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Animation\WalkingAnimation.cpp">
+      <Filter>Source Files\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Geometry\AbstractGeometry.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Geometry\Cube.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Geometry\Sfere.cpp">
+      <Filter>Source Files\Geometry</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Renderers\CubeRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Renderers\ModelRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Renderers\SceneRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Renderers\ScreenRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Renderers\SfereRenderer.cpp">
+      <Filter>Source Files\Renderers</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\AbstractModel.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\CubeModelBuilder.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\HierarchicalModel.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\ModelBuilder.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\Projector.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\RobotFactory.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\RobotModel.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\RobotPartsFactory.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\Scene.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\Screen.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\SfereModelBuilder.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\SimpleModel.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\SceneObjects\View.cpp">
+      <Filter>Source Files\SceneObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Transformation\Transform.cpp">
+      <Filter>Source Files\Transformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Transformation\TransformationBuilder.cpp">
+      <Filter>Source Files\Transformation</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground\Playground.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderLoader\Shader.cpp">
+      <Filter>Source Files\ShaderLoader</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

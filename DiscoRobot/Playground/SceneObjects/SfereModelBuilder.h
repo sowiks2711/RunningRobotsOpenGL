@@ -1,7 +1,7 @@
 #pragma once
 #include "ModelBuilder.h"
-#include "SfereRenderer.h"
-#include "Sfere.h"
+#include "..\Renderers\SfereRenderer.h"
+#include "..\Geometry\Sfere.h"
 
 class SfereModelBuilder :
 	public ModelBuilder

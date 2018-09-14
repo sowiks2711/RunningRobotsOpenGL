@@ -1,8 +1,8 @@
 #pragma once
-#include ".\Playground\AbstractModel.h"
+#include "AbstractModel.h"
 #include "HierarchicalModel.h"
-#include "RobotAnimator.h"
-#include "Playground\TransformationMatricesHandles.h"
+#include "..\Animation\RobotAnimator.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
 
 class RobotModel :
 	public AbstractModel

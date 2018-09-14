@@ -5,10 +5,10 @@
 #include <glm/glm.hpp>
 
 #include <GLFW/glfw3.h>
-#include "AbstractGeometry.h"
-#include "LightInteractionProperties.h"
-#include "LightInteractionPropertiesHandles.h"
-#include "TransformationMatricesHandles.h"
+#include "..\Geometry\AbstractGeometry.h"
+#include "..\POCOs\LightInteractionProperties.h"
+#include "..\POCOs\LightInteractionPropertiesHandles.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
 
 class ModelRenderer
 {

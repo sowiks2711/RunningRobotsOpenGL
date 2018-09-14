@@ -1,5 +1,4 @@
 #pragma once
-#include "Screen.h"
 #include <glm/glm.hpp>
 
 class Transform

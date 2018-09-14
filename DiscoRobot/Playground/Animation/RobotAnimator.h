@@ -1,10 +1,10 @@
 #pragma once
 #include <glm\glm.hpp>
-#include "Playground\TransformationBuilder.h"
-#include "ArmRotators.h"
-#include "LegRotators.h"
-#include "RobotAnimation.h"
-#include "WalkingAnimation.h"
+#include "..\Transformation\TransformationBuilder.h"
+#include "..\POCOs\ArmRotators.h"
+#include "..\POCOs\LegRotators.h"
+#include "..\Animation\RobotAnimation.h"
+#include "..\Animation\WalkingAnimation.h"
 #include <vector>
 
 class RobotAnimator

@@ -1,6 +1,6 @@
 #pragma once
-#include "Playground\AbstractModel.h"
-#include "Playground\TransformationMatricesHandles.h"
+#include "AbstractModel.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
 
 class SimpleModel :
 	public AbstractModel

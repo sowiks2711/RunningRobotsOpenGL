@@ -1,11 +1,12 @@
 #pragma once 
-#include "AbstractModel.h"
-#include "View.h"
-#include "Projector.h"
-#include "LightProperties.h"
-#include "TransformationMatricesHandles.h"
-#include "LightInteractionPropertiesHandles.h"
-#include "LightPropertiesHandles.h"
+#include "..\SceneObjects\AbstractModel.h"
+#include "..\SceneObjects\View.h"
+#include "..\SceneObjects\Projector.h"
+#include "..\POCOs\LightProperties.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
+#include "..\POCOs\LightInteractionPropertiesHandles.h"
+#include "..\POCOs\LightPropertiesHandles.h"
+#include "..\..\ShaderLoader\Shader.hpp"
 
 class SceneRenderer
 {

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include ".\..\DiscoRobot\Playground\Transform.h"
-#include ".\..\DiscoRobot\Playground\Transform.cpp"
+#include ".\..\DiscoRobot\Playground\Transformation\Transform.h"
+#include ".\..\DiscoRobot\Playground\Transformation\Transform.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

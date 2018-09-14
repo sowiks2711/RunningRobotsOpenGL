@@ -1,6 +1,6 @@
 #pragma once
 #include "AbstractModel.h"
-#include "../SimpleModel.h"
+#include "SimpleModel.h"
 #include <glm\glm.hpp>
 
 class ModelBuilder

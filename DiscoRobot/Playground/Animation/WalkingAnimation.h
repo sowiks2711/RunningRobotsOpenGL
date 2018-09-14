@@ -1,6 +1,6 @@
 #pragma once
 #include "RobotAnimation.h"
-#include "Playground\TransformationBuilder.h"
+#include "..\Transformation\TransformationBuilder.h"
 
 class WalkingAnimation :
 	public RobotAnimation

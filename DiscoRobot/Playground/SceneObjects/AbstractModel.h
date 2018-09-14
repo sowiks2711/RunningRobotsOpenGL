@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <glm/glm.hpp>
-#include "AbstractGeometry.h"
-#include "ModelRenderer.h"
-#include "LightInteractionProperties.h"
-#include "TransformationMatricesHandles.h"
+#include "..\Geometry\AbstractGeometry.h"
+#include "..\Renderers\ModelRenderer.h"
+#include "..\POCOs\LightInteractionProperties.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
 
 class AbstractModel
 {

@@ -1,6 +1,6 @@
 #pragma once
 #include "RobotPartsFactory.h"
-#include "RobotAnimator.h"
+#include "..\Animation\RobotAnimator.h"
 #include "HierarchicalModel.h"
 #include "RobotModel.h"
 

@@ -1,7 +1,7 @@
 #pragma once
-#include "Playground\AbstractModel.h"
+#include "AbstractModel.h"
 #include "SimpleModel.h"
-#include "Playground\TransformationMatricesHandles.h"
+#include "..\POCOs\TransformationMatricesHandles.h"
 
 class HierarchicalModel :
 	public AbstractModel
