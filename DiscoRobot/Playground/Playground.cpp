@@ -67,7 +67,7 @@ int main( void )
 
 	glm::mat4 secondaryActorTransformation = transformationBuilder.translate(100, 0, 45).build();
 	RobotModel* robot1 = robotFactory.createRobot(secondaryActorTransformation);
-	glm::mat4 mainActorTransformation = transformationBuilder.translate(95, 0, 45).build();
+	glm::mat4 mainActorTransformation = transformationBuilder.translate(90, 0, 45).build();
 	RobotModel* robot2 = robotFactory.createRobot(mainActorTransformation );
 	HierarchicalModel* floor = robotFactory.createFloor();
 
